@@ -8,6 +8,7 @@ const navLinks = [
   { name: "トップ", href: "/" },
   { name: "お知らせ", href: "/#news" },
   { name: "企画一覧", href: "/events" },
+  { name: "タイムテーブル", href: "/schedule" },
   { name: "アクセス", href: "/access" },
 ];
 
