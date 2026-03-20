@@ -1,5 +1,5 @@
-import { ChevronDown, Calendar, Headphones, Rocket, Star, Image as ImageIcon, ArrowRight } from "lucide-react";
-import { getNewsList } from "@/lib/microcms";
+import { ChevronDown, Calendar, MapPin, Image as ImageIcon, ArrowRight } from "lucide-react";
+import { getNewsList, getEventsList } from "@/lib/microcms";
 import Link from "next/link";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
@@ -19,11 +19,9 @@ export default async function Home() {
   const newsData = await getNewsList(3);
   const newsList = newsData.contents;
 
-  const eventList = [
-    { title: "お化け屋敷 ～星屑の迷宮～", type: "2年A組", desc: "教室全体を使った本格お化け屋敷。無事に脱出できるか！？", icon: <Rocket className="h-8 w-8 text-indigo-400" /> },
-    { title: "軽音部 ギャラクシーライブ", type: "軽音楽部", desc: "体育館メインステージで最高のバンド演奏をお送りします！", icon: <Headphones className="h-8 w-8 text-purple-400" /> },
-    { title: "プラネタリウム喫茶", type: "天文部", desc: "手作りプラネタリウムと美味しいドリンクで究極の癒やしを。", icon: <Star className="h-8 w-8 text-yellow-400" /> },
-  ];
+  // microCMS から企画データを取得（3件）
+  const eventsData = await getEventsList(3);
+  const eventList = eventsData.contents;
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)]">
@@ -112,31 +110,33 @@ export default async function Home() {
           </div>
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            {eventList.map((event, i) => (
-              <div 
-                key={i} 
-                className="group flex flex-col rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-2xl transition-all hover:-translate-y-2 hover:bg-white/20 hover:border-white/30"
-              >
-                {/* プレースホルダー画像部分（美しいグラデーション） */}
-                <div className="mb-6 flex aspect-video w-full items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/30 to-purple-500/30 text-white transition-opacity group-hover:opacity-80">
-                  <ImageIcon className="h-12 w-12 opacity-50 drop-shadow-md" />
-                </div>
-                
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="rounded-full bg-white/10 p-2 shadow-inner">
-                    {event.icon}
+            {eventList.length > 0 ? (
+              eventList.map((event) => (
+                <div 
+                  key={event.id} 
+                  className="group flex flex-col rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-2xl transition-all hover:-translate-y-2 hover:bg-white/20 hover:border-white/30"
+                >
+                  {/* プレースホルダー画像部分（美しいグラデーション） */}
+                  <div className="mb-6 flex aspect-video w-full items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/30 to-purple-500/30 text-white transition-opacity group-hover:opacity-80">
+                    <ImageIcon className="h-12 w-12 opacity-50 drop-shadow-md" />
                   </div>
-                  <span className="text-xs font-semibold tracking-wider text-indigo-300 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1">
-                    {event.type}
-                  </span>
+                  
+                  <div className="flex items-center gap-2 mb-3">
+                    <MapPin className="h-4 w-4 text-indigo-300" />
+                    <span className="text-xs font-semibold tracking-wider text-indigo-300">
+                      {event.location || event.category || "場所未定"}
+                    </span>
+                  </div>
+                  
+                  <h3 className="mb-3 text-xl font-bold text-slate-100">{event.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-400">
+                    {event.description || ""}
+                  </p>
                 </div>
-                
-                <h3 className="mb-3 text-xl font-bold text-slate-100">{event.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-400">
-                  {event.desc}
-                </p>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-center text-slate-400 col-span-3">現在、企画情報を準備中です。</p>
+            )}
           </div>
 
           <div className="mt-12 text-center">

@@ -1,27 +1,20 @@
-import { Image as ImageIcon, MapPin, Sparkles } from "lucide-react";
+import { Image as ImageIcon, MapPin } from "lucide-react";
+import { getEventsList, type Event } from "@/lib/microcms";
 
-export default function EventsPage() {
-  const classEvents = [
-    { title: "2-A お化け屋敷 〜星屑の迷宮〜", location: "南棟2階 2A教室", desc: "教室全体を使った本格お化け屋敷。無事に脱出できるか！？" },
-    { title: "1-C コスモスカフェ", location: "北棟1階 1C教室", desc: "宇宙をモチーフにしたオリジナルドリンクを提供します。" },
-    { title: "3-B 縁日プラネット", location: "中庭", desc: "射的やヨーヨー釣りなど、昔ながらの遊びを宇宙テーマで！" },
-  ];
+// ISR: 60秒ごとにキャッシュを再検証
+export const revalidate = 60;
 
-  const clubEvents = [
-    { title: "天文部 プラネタリウム喫茶", location: "特別棟3階 物理室", desc: "手作りプラネタリウムと美味しいドリンクで究極の癒やしを。" },
-    { title: "美術部 ギャラクシー・アート展", location: "特別棟2階 美術室", desc: "部員たちの渾身の作品を展示。ライブペイントも開催！" },
-    { title: "写真部 星空写真展", location: "南棟1階 廊下ギャラリー", desc: "校内外で撮影した美しい星空や風景写真を展示します。" },
-  ];
+// カテゴリ設定
+const categories = [
+  { key: "クラス企画", emoji: "🌟", label: "クラス企画", borderColor: "border-indigo-500/30" },
+  { key: "部活動・有志", emoji: "🎸", label: "部活動・有志企画", borderColor: "border-indigo-500/30" },
+  { key: "ステージ", emoji: "🎤", label: "メインステージ (体育館)", borderColor: "border-purple-500/30" },
+];
 
-  const stageEvents = [
-    { title: "軽音部 ギャラクシーライブ", location: "体育館メインステージ", desc: "最高のバンド演奏をお送りします！一緒に盛り上がろう！" },
-    { title: "ダンス部 スターライト・ショー", location: "体育館メインステージ", desc: "息の合った迫力のダンスパフォーマンス！" },
-    { title: "生徒会 オープニング＆クロージング", location: "体育館メインステージ", desc: "映像とライブ演出が融合した圧巻のステージ。" },
-  ];
-
-  const renderEventCard = (event: typeof classEvents[0], i: number) => (
+function renderEventCard(event: Event) {
+  return (
     <div 
-      key={i} 
+      key={event.id} 
       className="group flex flex-col rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-2xl transition-all hover:-translate-y-2 hover:bg-white/20 hover:border-white/30"
     >
       {/* プレースホルダー画像部分（美しいグラデーション） */}
@@ -32,16 +25,21 @@ export default function EventsPage() {
       <div className="flex items-center gap-2 mb-3">
         <MapPin className="h-4 w-4 text-indigo-300" />
         <span className="text-xs font-semibold tracking-wider text-indigo-300">
-          {event.location}
+          {event.location || "場所未定"}
         </span>
       </div>
       
       <h3 className="mb-3 text-xl font-bold text-slate-100">{event.title}</h3>
       <p className="text-sm leading-relaxed text-slate-400">
-        {event.desc}
+        {event.description || ""}
       </p>
     </div>
   );
+}
+
+export default async function EventsPage() {
+  const eventsData = await getEventsList();
+  const allEvents = eventsData.contents;
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)]">
@@ -78,40 +76,53 @@ export default function EventsPage() {
           </p>
         </div>
 
-        <div className="space-y-24">
-          {/* クラス企画 */}
-          <section className="animate-fade-in-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
-            <div className="flex items-center gap-3 mb-8 border-b border-indigo-500/30 pb-4">
-              <span className="text-3xl">🌟</span>
-              <h2 className="text-2xl font-bold tracking-wider text-slate-100">クラス企画</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {classEvents.map((event, i) => renderEventCard(event, i))}
-            </div>
-          </section>
+        {allEvents.length > 0 ? (
+          <div className="space-y-24">
+            {(() => {
+              // カテゴリ別にフィルタし、該当があるカテゴリのみ表示
+              const categorizedSections = categories
+                .map((cat, catIdx) => {
+                  const filtered = allEvents.filter((e) => e.category === cat.key);
+                  if (filtered.length === 0) return null;
+                  return (
+                    <section 
+                      key={cat.key} 
+                      className="animate-fade-in-up opacity-0 [animation-fill-mode:forwards]"
+                      style={{ animationDelay: `${200 + catIdx * 200}ms` }}
+                    >
+                      <div className={`flex items-center gap-3 mb-8 border-b ${cat.borderColor} pb-4`}>
+                        <span className="text-3xl">{cat.emoji}</span>
+                        <h2 className="text-2xl font-bold tracking-wider text-slate-100">{cat.label}</h2>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {filtered.map((event) => renderEventCard(event))}
+                      </div>
+                    </section>
+                  );
+                })
+                .filter(Boolean);
 
-          {/* 部活動・有志 */}
-          <section className="animate-fade-in-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
-            <div className="flex items-center gap-3 mb-8 border-b border-indigo-500/30 pb-4">
-              <span className="text-3xl">🎸</span>
-              <h2 className="text-2xl font-bold tracking-wider text-slate-100">部活動・有志企画</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {clubEvents.map((event, i) => renderEventCard(event, i))}
-            </div>
-          </section>
+              // カテゴリ別の表示が1つもない場合は、全件を「すべての企画」として表示
+              if (categorizedSections.length === 0) {
+                return (
+                  <section className="animate-fade-in-up opacity-0 [animation-fill-mode:forwards]" style={{ animationDelay: "200ms" }}>
+                    <div className="flex items-center gap-3 mb-8 border-b border-indigo-500/30 pb-4">
+                      <span className="text-3xl">🎪</span>
+                      <h2 className="text-2xl font-bold tracking-wider text-slate-100">すべての企画</h2>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {allEvents.map((event) => renderEventCard(event))}
+                    </div>
+                  </section>
+                );
+              }
 
-          {/* ステージ */}
-          <section className="animate-fade-in-up [animation-delay:600ms] opacity-0 [animation-fill-mode:forwards]">
-            <div className="flex items-center gap-3 mb-8 border-b border-purple-500/30 pb-4">
-              <span className="text-3xl">🎤</span>
-              <h2 className="text-2xl font-bold tracking-wider text-slate-100">メインステージ (体育館)</h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {stageEvents.map((event, i) => renderEventCard(event, i))}
-            </div>
-          </section>
-        </div>
+              return categorizedSections;
+            })()}
+          </div>
+        ) : (
+          <p className="text-center text-slate-400 text-lg py-12">現在、企画情報を準備中です。</p>
+        )}
 
       </main>
     </div>

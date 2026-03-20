@@ -36,3 +36,32 @@ export async function getNewsList(limit: number = 3): Promise<MicroCMSListRespon
     };
   }
 }
+
+// 企画の型定義
+export type Event = {
+  title: string;
+  category?: string;
+  location?: string;
+  description?: string;
+} & MicroCMSListContent;
+
+// 企画一覧を取得する関数
+export async function getEventsList(limit: number = 50): Promise<MicroCMSListResponse<Event>> {
+  try {
+    const data = await client.getList<Event>({
+      endpoint: "events",
+      queries: {
+        limit,
+      },
+    });
+    return data;
+  } catch (error) {
+    console.error("microCMS からの企画データ取得に失敗しました:", error);
+    return {
+      contents: [],
+      totalCount: 0,
+      offset: 0,
+      limit,
+    };
+  }
+}
