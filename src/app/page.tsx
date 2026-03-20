@@ -1,6 +1,9 @@
 import { ChevronDown, Calendar, Headphones, Rocket, Star, Image as ImageIcon } from "lucide-react";
 import { getNewsList } from "@/lib/microcms";
 
+// ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
+export const revalidate = 60;
+
 // 日付を YYYY.MM.DD 形式にフォーマットするヘルパー
 function formatDate(dateString: string): string {
   const d = new Date(dateString);
