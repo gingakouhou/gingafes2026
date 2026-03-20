@@ -2,15 +2,15 @@ import { ChevronDown, Calendar, Headphones, Rocket, Star, Image as ImageIcon } f
 
 export default function Home() {
   const newsList = [
-    { date: "2026.09.01", title: "文化祭の全日程スケジュールが公開されました！" },
-    { date: "2026.08.15", title: "テーマが『星のように輝く、僕らの青春』に決定！" },
-    { date: "2026.07.10", title: "特設サイト（準備用）を仮公開しました。" },
+    { date: "2026.05.15", title: "参加団体の募集を開始しました" },
+    { date: "2026.04.01", title: "ぎんが祭のテーマが決定しました！" },
+    { date: "2026.03.10", title: "特設サイト（準備用）を仮公開しました。" },
   ];
 
   const eventList = [
     { title: "お化け屋敷 ～星屑の迷宮～", type: "2年A組", desc: "教室全体を使った本格お化け屋敷。無事に脱出できるか！？", icon: <Rocket className="h-8 w-8 text-indigo-400" /> },
-    { title: "軽音ライブ『GALAXY BEAT』", type: "軽音楽部", desc: "体育館メインステージで最高のバンド演奏をお送りします！", icon: <Headphones className="h-8 w-8 text-purple-400" /> },
-    { title: "プラネタリウム・カフェ", type: "天文部", desc: "手作りプラネタリウムと美味しいドリンクで究極の癒やしを。", icon: <Star className="h-8 w-8 text-yellow-400" /> },
+    { title: "軽音部 ギャラクシーライブ", type: "軽音楽部", desc: "体育館メインステージで最高のバンド演奏をお送りします！", icon: <Headphones className="h-8 w-8 text-purple-400" /> },
+    { title: "プラネタリウム喫茶", type: "天文部", desc: "手作りプラネタリウムと美味しいドリンクで究極の癒やしを。", icon: <Star className="h-8 w-8 text-yellow-400" /> },
   ];
 
   return (
@@ -62,7 +62,7 @@ export default function Home() {
         {/* News セクション */}
         <section id="news" className="w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-wider text-slate-100 md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-white">
+            <h2 className="text-3xl font-bold tracking-wider md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
               News
             </h2>
             <p className="mt-2 text-sm text-indigo-300/80 tracking-widest">お知らせ</p>
@@ -72,7 +72,7 @@ export default function Home() {
             {newsList.map((news, i) => (
               <div 
                 key={i} 
-                className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 rounded-2xl border border-indigo-500/20 bg-slate-900/40 backdrop-blur-md p-6 shadow-xl transition-all hover:bg-slate-800/50 hover:border-indigo-500/40"
+                className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-xl transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1"
               >
                 <div className="flex items-center gap-2 text-indigo-300 whitespace-nowrap">
                   <Calendar className="h-4 w-4" />
@@ -87,7 +87,7 @@ export default function Home() {
         {/* Events セクション */}
         <section id="events" className="w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-wider text-slate-100 md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white">
+            <h2 className="text-3xl font-bold tracking-wider md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
               Events
             </h2>
             <p className="mt-2 text-sm text-purple-300/80 tracking-widest">企画一覧</p>
@@ -97,15 +97,15 @@ export default function Home() {
             {eventList.map((event, i) => (
               <div 
                 key={i} 
-                className="group flex flex-col rounded-3xl border border-indigo-500/10 bg-slate-900/40 backdrop-blur-md p-6 shadow-2xl transition-all hover:-translate-y-1 hover:bg-slate-800/60 hover:border-indigo-500/30"
+                className="group flex flex-col rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-2xl transition-all hover:-translate-y-2 hover:bg-white/20 hover:border-white/30"
               >
-                {/* プレースホルダー画像部分 */}
-                <div className="mb-6 flex aspect-video w-full items-center justify-center rounded-xl bg-slate-800/80 text-slate-600 transition-colors group-hover:bg-indigo-950/50">
-                  <ImageIcon className="h-12 w-12 opacity-50" />
+                {/* プレースホルダー画像部分（美しいグラデーション） */}
+                <div className="mb-6 flex aspect-video w-full items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/30 to-purple-500/30 text-white transition-opacity group-hover:opacity-80">
+                  <ImageIcon className="h-12 w-12 opacity-50 drop-shadow-md" />
                 </div>
                 
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="rounded-full bg-slate-800/80 p-2">
+                  <div className="rounded-full bg-white/10 p-2 shadow-inner">
                     {event.icon}
                   </div>
                   <span className="text-xs font-semibold tracking-wider text-indigo-300 rounded-full border border-indigo-500/30 bg-indigo-500/10 px-3 py-1">
