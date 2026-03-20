@@ -1,11 +1,19 @@
 import { ChevronDown, Calendar, Headphones, Rocket, Star, Image as ImageIcon } from "lucide-react";
+import { getNewsList } from "@/lib/microcms";
 
-export default function Home() {
-  const newsList = [
-    { date: "2026.05.15", title: "参加団体の募集を開始しました" },
-    { date: "2026.04.01", title: "ぎんが祭のテーマが決定しました！" },
-    { date: "2026.03.10", title: "特設サイト（準備用）を仮公開しました。" },
-  ];
+// 日付を YYYY.MM.DD 形式にフォーマットするヘルパー
+function formatDate(dateString: string): string {
+  const d = new Date(dateString);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}.${m}.${day}`;
+}
+
+export default async function Home() {
+  // microCMS からお知らせデータを取得
+  const newsData = await getNewsList(3);
+  const newsList = newsData.contents;
 
   const eventList = [
     { title: "お化け屋敷 ～星屑の迷宮～", type: "2年A組", desc: "教室全体を使った本格お化け屋敷。無事に脱出できるか！？", icon: <Rocket className="h-8 w-8 text-indigo-400" /> },
@@ -69,18 +77,24 @@ export default function Home() {
           </div>
           
           <div className="space-y-4">
-            {newsList.map((news, i) => (
-              <div 
-                key={i} 
-                className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-xl transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1"
-              >
-                <div className="flex items-center gap-2 text-indigo-300 whitespace-nowrap">
-                  <Calendar className="h-4 w-4" />
-                  <span className="text-sm font-medium tracking-wider">{news.date}</span>
+            {newsList.length > 0 ? (
+              newsList.map((news) => (
+                <div 
+                  key={news.id} 
+                  className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-xl transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1"
+                >
+                  <div className="flex items-center gap-2 text-indigo-300 whitespace-nowrap">
+                    <Calendar className="h-4 w-4" />
+                    <span className="text-sm font-medium tracking-wider">
+                      {formatDate(news.publishedAtDate || news.publishedAt || "")}
+                    </span>
+                  </div>
+                  <p className="text-slate-200">{news.title}</p>
                 </div>
-                <p className="text-slate-200">{news.title}</p>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-center text-slate-400">現在、お知らせはありません。</p>
+            )}
           </div>
         </section>
 
