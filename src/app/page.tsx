@@ -1,5 +1,6 @@
-import { ChevronDown, Calendar, Headphones, Rocket, Star, Image as ImageIcon } from "lucide-react";
+import { ChevronDown, Calendar, Headphones, Rocket, Star, Image as ImageIcon, ArrowRight } from "lucide-react";
 import { getNewsList } from "@/lib/microcms";
+import Link from "next/link";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
@@ -136,6 +137,16 @@ export default async function Home() {
                 </p>
               </div>
             ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <Link 
+              href="/events"
+              className="inline-flex items-center gap-2 rounded-full border border-indigo-400/50 bg-indigo-500/10 px-8 py-4 text-sm font-medium tracking-widest text-indigo-300 transition-all hover:bg-indigo-500/20 hover:text-indigo-200 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:-translate-y-1"
+            >
+              すべての企画を見る
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </section>
       </div>
