@@ -5,10 +5,10 @@ import Link from "next/link";
 import { Menu, X, Sparkles } from "lucide-react";
 
 const navLinks = [
-  { name: "トップ", href: "#" },
-  { name: "お知らせ", href: "#" },
-  { name: "企画一覧", href: "#" },
-  { name: "アクセス", href: "#" },
+  { name: "トップ", href: "/" },
+  { name: "お知らせ", href: "/#news" },
+  { name: "企画一覧", href: "/#events" },
+  { name: "アクセス", href: "/access" },
 ];
 
 export default function Header() {
@@ -21,7 +21,7 @@ export default function Header() {
         <div className="flex items-center gap-2">
           <Sparkles className="h-6 w-6 text-indigo-400" />
           <Link
-            href="#"
+            href="/"
             className="text-xl font-bold tracking-wider text-slate-100 transition-colors hover:text-indigo-300"
           >
             ぎんが祭 <span className="text-indigo-400">2026</span>
