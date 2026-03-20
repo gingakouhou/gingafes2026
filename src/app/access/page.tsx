@@ -40,13 +40,13 @@ export default function AccessPage() {
         {/* マッププレースホルダー */}
         <section className="mb-12 animate-fade-in-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
           <div className="relative flex w-full aspect-video items-center justify-center rounded-3xl border border-white/20 bg-gradient-to-br from-indigo-900/50 to-slate-900/50 backdrop-blur-md shadow-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-white/5 mix-blend-overlay"></div>
-            <div className="flex flex-col items-center gap-4 text-indigo-300">
-              <MapPin className="w-12 h-12 opacity-80 animate-bounce" />
-              <span className="text-lg font-medium tracking-widest drop-shadow-md">
-                Google Map 準備中
-              </span>
-            </div>
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1608.967924736025!2d137.96395867129468!3d36.241052283868164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601d0e813c4eb843%3A0x7fd4c64a8d1a0efa!2z44CSMzkwLTA4NjEg6ZW36YeO55yM5p2-5pys5biC6J-744Kx5bSO77yR5LiB55uu77yR4oiS77yV77yUIOifu-OCseW0jumrmOagoeWQjOeqk-S8mumkqA!5e0!3m2!1sja!2sjp!4v1773991075368!5m2!1sja!2sjp" 
+              className="w-full h-full border-0" 
+              allowFullScreen 
+              loading="lazy" 
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </section>
 
@@ -60,8 +60,8 @@ export default function AccessPage() {
             <div>
               <h3 className="text-xl font-bold text-slate-100 mb-2">電車をご利用の場合</h3>
               <p className="text-slate-300 leading-relaxed text-sm">
-                JR銀河線「スターライト駅」下車<br />
-                東口より徒歩約15分
+                JR東日本・アルピコ交通「松本駅」<br />
+                東口より徒歩約20分
               </p>
             </div>
           </section>
@@ -74,8 +74,7 @@ export default function AccessPage() {
             <div>
               <h3 className="text-xl font-bold text-slate-100 mb-2">バスをご利用の場合</h3>
               <p className="text-slate-300 leading-relaxed text-sm">
-                市営バス 宇宙循環線<br />
-                「〇〇高校前」バス停下車すぐ
+                「蟻ヶ崎高校前」バス停下車すぐ
               </p>
             </div>
           </section>
@@ -86,7 +85,7 @@ export default function AccessPage() {
           <AlertTriangle className="w-6 h-6 text-rose-400 flex-shrink-0 mt-1 sm:mt-0" />
           <p className="text-rose-200 text-sm md:text-base font-medium">
             <span className="font-bold">※ ご注意</span><br className="sm:hidden" />
-            当日は学校の駐車場をご利用いただけません。お越しの際は、公共交通機関をご利用ください。
+            当日は高校周辺の駐車場が混雑することが予想されます。お越しの際は、なるべく公共交通機関をご利用ください。
           </p>
         </section>
 
