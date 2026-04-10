@@ -22,7 +22,7 @@ export default function SchedulePage() {
       <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
         <div className="mb-16 text-center animate-brutal-slide">
-           <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform 2">
+           <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6">
             <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
               Schedule
             </h1>
@@ -79,7 +79,7 @@ export default function SchedulePage() {
                   </div>
 
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>

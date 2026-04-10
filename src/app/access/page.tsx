@@ -45,51 +45,52 @@ export default function AccessPage() {
           {/* 電車 */}
           <ScrollReveal delay={0.3}>
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all cursor-pointer hover:border-blue-600 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_rgba(37,99,235,1)] active:translate-y-2 active:translate-x-2 active:shadow-none h-full">
-            <div className="flex-shrink-0 bg-blue-100 border-4 border-black p-4 -skew-x-6 rotate-3">
-              <Train className="w-10 h-10 text-blue-700" />
-            </div>
-            <div className="text-center sm:text-left mt-4 sm:mt-0">
-              <h3 className="text-2xl font-black text-black mb-2 uppercase">電車をご利用の場合</h3>
-              <p className="text-slate-800 font-bold leading-relaxed">
-                JR東日本・アルピコ交通「松本駅」<br />
-                東口より徒歩約<span className="text-blue-600 text-xl font-black">20</span>分
-              </p>
+              <div className="flex-shrink-0 bg-blue-100 border-4 border-black p-4 -skew-x-6 rotate-3">
+                <Train className="w-10 h-10 text-blue-700" />
+              </div>
+              <div className="text-center sm:text-left mt-4 sm:mt-0">
+                <h3 className="text-2xl font-black text-black mb-2 uppercase">電車をご利用の場合</h3>
+                <p className="text-slate-800 font-bold leading-relaxed">
+                  JR東日本・アルピコ交通「松本駅」<br />
+                  東口より徒歩約<span className="text-blue-600 text-xl font-black">20</span>分
+                </p>
+              </div>
             </div>
           </ScrollReveal>
 
           {/* バス */}
           <ScrollReveal delay={0.4}>
             <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all cursor-pointer hover:border-orange-600 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_rgba(234,88,12,1)] active:translate-y-2 active:translate-x-2 active:shadow-none h-full">
-            <div className="flex-shrink-0 bg-orange-100 border-4 border-black p-4 -skew-x-6 -rotate-3">
-              <Bus className="w-10 h-10 text-orange-700" />
-            </div>
-            <div className="text-center sm:text-left mt-4 sm:mt-0">
-              <h3 className="text-2xl font-black text-black mb-2 uppercase">バスをご利用の場合</h3>
-              <p className="text-slate-800 font-bold leading-relaxed">
-                「生垣高校前」バス停下車すぐ
-              </p>
+              <div className="flex-shrink-0 bg-orange-100 border-4 border-black p-4 -skew-x-6 -rotate-3">
+                <Bus className="w-10 h-10 text-orange-700" />
+              </div>
+              <div className="text-center sm:text-left mt-4 sm:mt-0">
+                <h3 className="text-2xl font-black text-black mb-2 uppercase">バスをご利用の場合</h3>
+                <p className="text-slate-800 font-bold leading-relaxed">
+                  「生垣高校前」バス停下車すぐ
+                </p>
+              </div>
             </div>
           </ScrollReveal>
         </div>
 
         {/* 注意事項 */}
-        {/* 注意事項 */}
         <ScrollReveal delay={0.5}>
           <section className="relative flex flex-col sm:flex-row items-center gap-6 border-4 border-black bg-orange-500 p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_rgba(0,0,0,1)] active:translate-y-2 active:translate-x-2 active:shadow-none cursor-pointer">
-          {/* しましま背景装飾 */}
-          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px)' }}></div>
-          
-          <div className="relative z-10 bg-white border-4 border-black p-3 -rotate-6">
-            <AlertTriangle className="w-10 h-10 text-orange-600" />
-          </div>
-          <div className="relative z-10 text-center sm:text-left">
-            <h4 className="text-2xl font-black text-white tracking-widest mb-2 shadow-black drop-shadow-md">
-              駐車場に関するご注意
-            </h4>
-            <p className="text-white font-bold text-lg drop-shadow-md">
-              当日は高校周辺の駐車場が混雑することが予想されます。お越しの際は、なるべく<u className="decoration-black decoration-4 underline-offset-4">公共交通機関をご利用ください</u>。
-            </p>
-          </div>
+            {/* しましま背景装飾 */}
+            <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px)' }}></div>
+            
+            <div className="relative z-10 bg-white border-4 border-black p-3 -rotate-6">
+              <AlertTriangle className="w-10 h-10 text-orange-600" />
+            </div>
+            <div className="relative z-10 text-center sm:text-left">
+              <h4 className="text-2xl font-black text-white tracking-widest mb-2 shadow-black drop-shadow-md">
+                駐車場に関するご注意
+              </h4>
+              <p className="text-white font-bold text-lg drop-shadow-md">
+                当日は高校周辺の駐車場が混雑することが予想されます。お越しの際は、なるべく<u className="decoration-black decoration-4 underline-offset-4">公共交通機関をご利用ください</u>。
+              </p>
+            </div>
           </section>
         </ScrollReveal>
 

@@ -31,36 +31,35 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
       <div 
         className={`border-4 border-black bg-white transition-all duration-300 ${isOpen ? "shadow-[8px_8px_0px_rgba(234,88,12,1)] -translate-y-1 -translate-x-1" : "shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_rgba(37,99,235,1)] active:translate-y-2 active:translate-x-2 active:shadow-none"}`}
       >
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus:ring-4 focus:ring-blue-600/50"
-        aria-expanded={isOpen}
-      >
-        <div className="flex items-center gap-4">
-          <div className={`p-2 border-4 border-black transition-colors flex-shrink-0 -skew-x-6 ${isOpen ? "bg-orange-500 text-white translate-y-1 shadow-none" : "bg-blue-200 text-blue-900 shadow-[2px_2px_0px_rgba(0,0,0,1)]"}`}>
-            <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8" />
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus:ring-4 focus:ring-blue-600/50"
+          aria-expanded={isOpen}
+        >
+          <div className="flex items-center gap-4">
+            <div className={`p-2 border-4 border-black transition-colors flex-shrink-0 -skew-x-6 ${isOpen ? "bg-orange-500 text-white translate-y-1 shadow-none" : "bg-blue-200 text-blue-900 shadow-[2px_2px_0px_rgba(0,0,0,1)]"}`}>
+              <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8" />
+            </div>
+            <span className={`text-lg sm:text-xl font-black transition-colors ${isOpen ? "text-orange-600" : "text-black"}`}>
+              {faq.q}
+            </span>
           </div>
-          <span className={`text-lg sm:text-xl font-black transition-colors ${isOpen ? "text-orange-600" : "text-black"}`}>
-            {faq.q}
-          </span>
-        </div>
-        <div className={`flex-shrink-0 p-1 border-2 border-black transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isOpen ? "rotate-180 bg-black text-white" : "rotate-0 bg-white text-black"}`}>
-          <ChevronDown className="w-6 h-6" />
-        </div>
-      </button>
-      
-      {/* 
-        Tailwindのgridを用いたスムーズな開閉アニメーション + バウンス感
-      */}
-      <div 
-        className={`grid transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-top ${isOpen ? "grid-rows-[1fr] opacity-100 scale-y-100" : "grid-rows-[0fr] opacity-0 scale-y-95 pointer-events-none"}`}
-      >
-        <div className="overflow-hidden">
-          <div className="p-6 pt-0 bg-orange-50 border-t-4 border-black mt-2">
-            <p className="flex gap-4 font-bold text-slate-800 leading-loose py-4">
-              <span className="font-black text-orange-600 text-2xl -skew-x-12">A.</span>
-              <span>{faq.a}</span>
-            </p>
+          <div className={`flex-shrink-0 p-1 border-2 border-black transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isOpen ? "rotate-180 bg-black text-white" : "rotate-0 bg-white text-black"}`}>
+            <ChevronDown className="w-6 h-6" />
+          </div>
+        </button>
+        
+        {/* Tailwindのgridを用いたスムーズな開閉アニメーション + バウンス感 */}
+        <div 
+          className={`grid transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-top ${isOpen ? "grid-rows-[1fr] opacity-100 scale-y-100" : "grid-rows-[0fr] opacity-0 scale-y-95 pointer-events-none"}`}
+        >
+          <div className="overflow-hidden">
+            <div className="p-6 pt-0 bg-orange-50 border-t-4 border-black mt-2">
+              <p className="flex gap-4 font-bold text-slate-800 leading-loose py-4">
+                <span className="font-black text-orange-600 text-2xl -skew-x-12">A.</span>
+                <span>{faq.a}</span>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -81,7 +80,7 @@ export default function FAQPage() {
       <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
         <div className="mb-16 text-center animate-brutal-slide">
-          <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform 2">
+          <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6">
             <div className="flex items-center justify-center gap-4">
               <MessageCircleQuestion className="w-10 h-10 border-2 border-white p-1" />
               <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
