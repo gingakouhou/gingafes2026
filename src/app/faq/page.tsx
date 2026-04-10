@@ -27,38 +27,37 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
 
   return (
     <div 
-      className={`animate-fade-in-up opacity-0 [animation-fill-mode:forwards] rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md shadow-xl overflow-hidden transition-all duration-300 ${isOpen ? "bg-white/20 border-indigo-400/50" : "hover:bg-white/15 hover:border-white/30"}`}
-      style={{ animationDelay: `${200 + index * 150}ms` }}
+      className={`animate-brutal-slide opacity-0 [animation-fill-mode:forwards] border-4 border-black bg-white transition-all duration-300 ${isOpen ? "shadow-[8px_8px_0px_rgba(234,88,12,1)] -translate-y-1" : "shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[12px_12px_0px_rgba(37,99,235,1)]"}`}
+      style={{ animationDelay: `${200 + index * 100}ms` }}
     >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus:ring-2 focus:ring-indigo-400/50 rounded-2xl"
+        className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus:ring-4 focus:ring-blue-600/50"
         aria-expanded={isOpen}
       >
         <div className="flex items-center gap-4">
-          <div className={`p-2 rounded-full transition-colors flex-shrink-0 ${isOpen ? "bg-indigo-500/20 text-indigo-300" : "bg-white/10 text-slate-300"}`}>
-            <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6" />
+          <div className={`p-2 border-4 border-black transition-colors flex-shrink-0 -skew-x-6 ${isOpen ? "bg-orange-500 text-white translate-y-1 shadow-none" : "bg-blue-200 text-blue-900 shadow-[2px_2px_0px_rgba(0,0,0,1)]"}`}>
+            <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8" />
           </div>
-          <span className={`text-base sm:text-lg font-bold transition-colors ${isOpen ? "text-indigo-100" : "text-slate-100"}`}>
+          <span className={`text-lg sm:text-xl font-black transition-colors ${isOpen ? "text-orange-600" : "text-black"}`}>
             {faq.q}
           </span>
         </div>
-        <ChevronDown 
-          className={`w-5 h-5 flex-shrink-0 text-indigo-300 transition-transform duration-500 ease-in-out ${isOpen ? "rotate-180" : "rotate-0"}`} 
-        />
+        <div className={`flex-shrink-0 p-1 border-2 border-black transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isOpen ? "rotate-180 bg-black text-white" : "rotate-0 bg-white text-black"}`}>
+          <ChevronDown className="w-6 h-6" />
+        </div>
       </button>
       
       {/* 
-        Tailwindのgridを用いたスムーズな開閉アニメーション 
-        grid-template-rows: 0fr -> 1fr のトランジション
+        Tailwindのgridを用いたスムーズな開閉アニメーション + バウンス感
       */}
       <div 
-        className={`grid transition-all duration-500 ease-in-out ${isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+        className={`grid transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-top ${isOpen ? "grid-rows-[1fr] opacity-100 scale-y-100" : "grid-rows-[0fr] opacity-0 scale-y-95 pointer-events-none"}`}
       >
         <div className="overflow-hidden">
-          <div className="p-6 pt-0 text-slate-300 leading-relaxed border-t border-white/10 mt-2">
-            <p className="flex gap-3">
-              <span className="font-bold text-indigo-300 text-lg">A.</span>
+          <div className="p-6 pt-0 bg-orange-50 border-t-4 border-black mt-2">
+            <p className="flex gap-4 font-bold text-slate-800 leading-loose py-4">
+              <span className="font-black text-orange-600 text-2xl -skew-x-12">A.</span>
               <span>{faq.a}</span>
             </p>
           </div>
@@ -70,39 +69,26 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
 
 export default function FAQPage() {
   return (
-    <div className="relative min-h-[calc(100vh-4rem)]">
-      {/* 常に背面にある星空・オーロラエフェクト (fixed) */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-600/20 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-[600px] w-[600px] translate-x-1/4 translate-y-1/4 rounded-full bg-purple-600/10 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
-        
-        {/* 無数の星 */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white opacity-20 animate-twinkle"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`,
-            }}
-          />
-        ))}
-      </div>
+    <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 pb-20 overflow-x-hidden selection:bg-orange-600 selection:text-white">
+      {/* 背景パターン: ドット */}
+      <div className="fixed inset-0 z-0 bg-dot-pattern opacity-10 pointer-events-none mix-blend-multiply" />
 
-      <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+      {/* スラッシュ状の背景装飾 */}
+      <div className="fixed top-1/4 right-0 w-1/4 h-2/3 bg-orange-600/5 skew-x-12 translate-x-16 pointer-events-none z-0" />
+      <div className="fixed bottom-0 left-0 w-1/2 h-1/3 bg-blue-600/5 -skew-x-12 -translate-x-32 pointer-events-none z-0" />
+
+      <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
-        <div className="mb-16 text-center animate-fade-in-up">
-          <div className="inline-flex items-center justify-center p-4 mb-4 rounded-full bg-indigo-500/10 border border-indigo-400/30">
-            <MessageCircleQuestion className="w-8 h-8 md:w-10 md:h-10 text-indigo-300" />
+        <div className="mb-16 text-center animate-brutal-slide">
+          <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform 2">
+            <div className="flex items-center justify-center gap-4">
+              <MessageCircleQuestion className="w-10 h-10 border-2 border-white p-1" />
+              <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
+                Q&A
+              </h1>
+            </div>
           </div>
-          <h1 className="text-4xl font-extrabold tracking-wider md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-indigo-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-            Q&A
-          </h1>
-          <p className="mt-4 text-sm tracking-widest text-indigo-200/80 uppercase">
+          <p className="mt-8 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] -rotate-1">
             よくある質問
           </p>
         </div>

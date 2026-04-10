@@ -1,4 +1,4 @@
-import { Clock, MapPin, Sparkles } from "lucide-react";
+import { Clock, MapPin, Sparkles, Zap } from "lucide-react";
 
 export default function SchedulePage() {
   const scheduleData = [
@@ -10,44 +10,31 @@ export default function SchedulePage() {
   ];
 
   return (
-    <div className="relative min-h-[calc(100vh-4rem)]">
-      {/* 常に背面にある星空・オーロラエフェクト (fixed) */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-600/20 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-[600px] w-[600px] translate-x-1/4 translate-y-1/4 rounded-full bg-purple-600/10 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
-        
-        {/* 無数の星 */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white opacity-20 animate-twinkle"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`,
-            }}
-          />
-        ))}
-      </div>
+    <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 pb-20 overflow-x-hidden selection:bg-orange-600 selection:text-white">
+      {/* 背景パターン: ドット */}
+      <div className="fixed inset-0 z-0 bg-dot-pattern opacity-10 pointer-events-none mix-blend-multiply" />
 
-      <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+      {/* スラッシュ状の背景装飾 */}
+      <div className="fixed top-20 right-0 w-1/3 h-full bg-blue-600/5 -skew-x-12 translate-x-32 pointer-events-none z-0" />
+      <div className="fixed bottom-0 left-0 w-1/2 h-1/2 bg-orange-600/5 skew-x-12 -translate-x-16 pointer-events-none z-0" />
+
+      <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
-        <div className="mb-16 text-center animate-fade-in-up">
-          <h1 className="text-4xl font-extrabold tracking-wider md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-pink-200 to-indigo-200 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-            Schedule
-          </h1>
-          <p className="mt-4 text-sm tracking-widest text-indigo-200/80 uppercase">
+        <div className="mb-16 text-center animate-brutal-slide">
+           <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform 2">
+            <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
+              Schedule
+            </h1>
+          </div>
+          <p className="mt-6 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] -rotate-2">
             タイムテーブル
           </p>
         </div>
 
         {/* タイムラインコンテナ */}
         <div className="relative wrap overflow-hidden p-4 h-full">
-          {/* 中央（または左寄り）の縦線 */}
-          <div className="absolute border-opacity-20 border-white h-full border-l-2 left-6 md:left-1/2 md:-ml-[1px]"></div>
+          {/* 中央（または左寄り）の太い縦線 */}
+          <div className="absolute border-opacity-100 border-black h-full border-l-8 left-6 md:left-1/2 md:-ml-[4px] z-0"></div>
 
           {scheduleData.map((item, index) => {
             // PC版では左右交互に配置するためのフラグ
@@ -56,40 +43,38 @@ export default function SchedulePage() {
             return (
               <div 
                 key={index} 
-                className={`mb-12 flex justify-between items-center w-full animate-fade-in-up opacity-0 [animation-fill-mode:forwards]
+                className={`mb-16 flex justify-between items-center w-full animate-brutal-slide opacity-0 [animation-fill-mode:forwards]
                   ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'}
-                  flex-row-reverse
+                  flex-row-reverse relative z-10
                 `}
                 style={{ animationDelay: `${200 + index * 150}ms` }}
               >
                 {/* PC時の余白調整（スマホ時は非表示） */}
                 <div className="hidden md:block w-5/12"></div>
 
-                {/* タイムライン上のポイント（星アイコン） */}
-                <div className="z-20 flex items-center justify-center w-8 h-8 md:w-10 md:h-10 bg-indigo-900 rounded-full shadow-[0_0_15px_rgba(129,140,248,0.6)] border-2 border-indigo-400">
-                  <Sparkles className="w-4 h-4 md:w-5 md:h-5 text-indigo-200" />
+                {/* タイムライン上のポイント */}
+                <div className="z-20 flex items-center justify-center w-10 h-10 md:w-14 md:h-14 bg-blue-600 shadow-[4px_4px_0px_rgba(0,0,0,1)] border-4 border-black -skew-x-12 rotate-3">
+                  <Zap className="w-5 h-5 md:w-8 md:h-8 text-white fill-white" />
                 </div>
 
-                {/* スケジュールカード (グラスモーフィズム) */}
-                <div className="w-[calc(100%-3rem)] md:w-5/12 rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-xl transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1">
+                {/* スケジュールカード (ネオブルータリズム) */}
+                <div className="w-[calc(100%-4rem)] md:w-5/12 border-4 border-black bg-white p-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all hover:border-orange-600 hover:shadow-[12px_12px_0px_rgba(234,88,12,1)] hover:-translate-y-2 hover:-rotate-1 relative">
                   
-                  {/* 時間 */}
-                  <div className="flex items-center gap-2 mb-3">
-                    <Clock className="w-5 h-5 text-indigo-300" />
-                    <span className="text-2xl font-black tracking-widest text-indigo-100 drop-shadow-[0_0_8px_rgba(165,180,252,0.5)]">
-                      {item.time}
-                    </span>
+                  {/* アメコミ風の時間バッジ */}
+                  <div className="absolute -top-5 -left-2 bg-black text-white px-3 py-1 font-black text-xl md:text-2xl -skew-x-12 transform -rotate-3 border-4 border-white shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center gap-2">
+                    <Clock className="w-5 h-5" />
+                    <span>{item.time}</span>
                   </div>
                   
                   {/* アロー付きのタイトル */}
-                  <h3 className="text-xl font-bold text-slate-100 mb-3 leading-snug">
+                  <h3 className="text-xl md:text-2xl font-black text-black mb-3 leading-snug mt-6 hover:text-blue-700 transition-colors">
                     {item.title}
                   </h3>
 
                   {/* 場所 */}
-                  <div className="flex items-center gap-2 text-slate-300 bg-black/20 rounded-full px-3 py-1.5 w-fit border border-white/5">
-                    <MapPin className="w-4 h-4 text-purple-300" />
-                    <span className="text-sm tracking-wider font-medium">{item.location}</span>
+                  <div className="flex items-center gap-2 text-blue-900 bg-blue-100 border-2 border-black px-3 py-1.5 w-fit -skew-x-6">
+                    <MapPin className="w-4 h-4 font-black" />
+                    <span className="text-sm tracking-wider font-black">{item.location}</span>
                   </div>
 
                 </div>

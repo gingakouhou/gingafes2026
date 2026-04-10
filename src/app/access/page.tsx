@@ -1,92 +1,90 @@
-import { MapPin, Train, Bus, AlertTriangle } from "lucide-react";
+import { MapPin, Train, Bus, AlertTriangle, Zap } from "lucide-react";
 
 export default function AccessPage() {
   return (
-    <div className="relative min-h-[calc(100vh-4rem)]">
-      {/* 常に背面にある星空・オーロラエフェクト (fixed) */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-600/20 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-[600px] w-[600px] translate-x-1/4 translate-y-1/4 rounded-full bg-purple-600/10 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
-        
-        {/* 無数の星 */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white opacity-20 animate-twinkle"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`,
-            }}
-          />
-        ))}
-      </div>
+    <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 pb-20 overflow-x-hidden selection:bg-blue-600 selection:text-white">
+      {/* 背景パターン: ドット */}
+      <div className="fixed inset-0 z-0 bg-dot-pattern opacity-10 pointer-events-none mix-blend-multiply" />
 
-      {/* コンテンツ領域 */}
-      <main className="relative z-10 w-full max-w-5xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
+      {/* スラッシュ状の背景装飾 */}
+      <div className="fixed top-20 left-0 w-1/3 h-full bg-orange-600/5 skew-x-12 -translate-x-32 pointer-events-none z-0" />
+      <div className="fixed bottom-0 right-0 w-1/2 h-1/2 bg-blue-600/5 -skew-x-12 translate-x-16 pointer-events-none z-0" />
+
+      <main className="relative z-10 w-full max-w-5xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
-        <div className="mb-12 text-center animate-fade-in-up">
-          <h1 className="text-4xl font-extrabold tracking-wider md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-blue-200 to-indigo-100 drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]">
-            Access
-          </h1>
-          <p className="mt-4 text-sm tracking-widest text-indigo-200/80 uppercase">
+        <div className="mb-16 text-center animate-brutal-slide">
+           <div className="inline-block bg-blue-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] skew-x-6 transform -rotate-1">
+            <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
+              Access
+            </h1>
+          </div>
+          <p className="mt-6 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] rotate-2">
             会場へのアクセス
           </p>
         </div>
 
         {/* マッププレースホルダー */}
-        <section className="mb-12 animate-fade-in-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
-          <div className="relative flex w-full aspect-video items-center justify-center rounded-3xl border border-white/20 bg-gradient-to-br from-indigo-900/50 to-slate-900/50 backdrop-blur-md shadow-2xl overflow-hidden">
+        <section className="mb-16 animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
+          <div className="relative flex w-full aspect-video items-center justify-center border-4 border-black bg-blue-100 shadow-[12px_12px_0px_rgba(0,0,0,1)] overflow-hidden">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1608.967924736025!2d137.96395867129468!3d36.241052283868164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601d0e813c4eb843%3A0x7fd4c64a8d1a0efa!2z44CSMzkwLTA4NjEg6ZW36YeO55yM5p2-5pys5biC6J-744Kx5bSO77yR5LiB55uu77yR4oiS77yV77yUIOifu-OCseW0jumrmOagoeWQjOeqk-S8mumkqA!5e0!3m2!1sja!2sjp!4v1773991075368!5m2!1sja!2sjp" 
-              className="w-full h-full border-0" 
+              className="w-full h-full border-0 filter contrast-125 saturate-150 relative z-10" 
               allowFullScreen 
               loading="lazy" 
               referrerPolicy="no-referrer-when-downgrade"
             />
+            {/* 装飾用テープ */}
+            <div className="absolute -top-4 -left-12 w-32 h-8 bg-orange-600 opacity-80 -rotate-45 z-20"></div>
+            <div className="absolute -bottom-4 -right-12 w-32 h-8 bg-blue-600 opacity-80 -rotate-45 z-20"></div>
           </div>
         </section>
 
         {/* 交通機関案内 */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* 電車 */}
-          <section className="flex items-start gap-4 rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-8 shadow-xl transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 animate-fade-in-up [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
-            <div className="rounded-full flex-shrink-0 bg-white/10 p-4 shadow-inner">
-              <Train className="w-8 h-8 text-indigo-300" />
+          <section className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all hover:border-blue-600 hover:-translate-y-1 hover:shadow-[12px_12px_0px_rgba(37,99,235,1)] animate-brutal-slide [animation-delay:300ms] opacity-0 [animation-fill-mode:forwards]">
+            <div className="flex-shrink-0 bg-blue-100 border-4 border-black p-4 -skew-x-6 rotate-3">
+              <Train className="w-10 h-10 text-blue-700" />
             </div>
-            <div>
-              <h3 className="text-xl font-bold text-slate-100 mb-2">電車をご利用の場合</h3>
-              <p className="text-slate-300 leading-relaxed text-sm">
+            <div className="text-center sm:text-left mt-4 sm:mt-0">
+              <h3 className="text-2xl font-black text-black mb-2 uppercase">電車をご利用の場合</h3>
+              <p className="text-slate-800 font-bold leading-relaxed">
                 JR東日本・アルピコ交通「松本駅」<br />
-                東口より徒歩約20分
+                東口より徒歩約<span className="text-blue-600 text-xl font-black">20</span>分
               </p>
             </div>
           </section>
 
           {/* バス */}
-          <section className="flex items-start gap-4 rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-8 shadow-xl transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1 animate-fade-in-up [animation-delay:600ms] opacity-0 [animation-fill-mode:forwards]">
-            <div className="rounded-full flex-shrink-0 bg-white/10 p-4 shadow-inner">
-              <Bus className="w-8 h-8 text-purple-300" />
+          <section className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all hover:border-orange-600 hover:-translate-y-1 hover:shadow-[12px_12px_0px_rgba(234,88,12,1)] animate-brutal-slide [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
+            <div className="flex-shrink-0 bg-orange-100 border-4 border-black p-4 -skew-x-6 -rotate-3">
+              <Bus className="w-10 h-10 text-orange-700" />
             </div>
-            <div>
-              <h3 className="text-xl font-bold text-slate-100 mb-2">バスをご利用の場合</h3>
-              <p className="text-slate-300 leading-relaxed text-sm">
-                「蟻ヶ崎高校前」バス停下車すぐ
+            <div className="text-center sm:text-left mt-4 sm:mt-0">
+              <h3 className="text-2xl font-black text-black mb-2 uppercase">バスをご利用の場合</h3>
+              <p className="text-slate-800 font-bold leading-relaxed">
+                「生垣高校前」バス停下車すぐ
               </p>
             </div>
           </section>
         </div>
 
         {/* 注意事項 */}
-        <section className="flex items-start sm:items-center gap-4 rounded-2xl border border-rose-500/40 bg-rose-500/10 backdrop-blur-md p-6 shadow-xl animate-fade-in-up [animation-delay:800ms] opacity-0 [animation-fill-mode:forwards]">
-          <AlertTriangle className="w-6 h-6 text-rose-400 flex-shrink-0 mt-1 sm:mt-0" />
-          <p className="text-rose-200 text-sm md:text-base font-medium">
-            <span className="font-bold">※ ご注意</span><br className="sm:hidden" />
-            当日は高校周辺の駐車場が混雑することが予想されます。お越しの際は、なるべく公共交通機関をご利用ください。
-          </p>
+        <section className="relative flex flex-col sm:flex-row items-center gap-6 border-4 border-black bg-orange-500 p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] animate-brutal-slide [animation-delay:500ms] opacity-0 [animation-fill-mode:forwards] overflow-hidden">
+          {/* しましま背景装飾 */}
+          <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px)' }}></div>
+          
+          <div className="relative z-10 bg-white border-4 border-black p-3 -rotate-6">
+            <AlertTriangle className="w-10 h-10 text-orange-600" />
+          </div>
+          <div className="relative z-10 text-center sm:text-left">
+            <h4 className="text-2xl font-black text-white tracking-widest mb-2 shadow-black drop-shadow-md">
+              駐車場に関するご注意
+            </h4>
+            <p className="text-white font-bold text-lg drop-shadow-md">
+              当日は高校周辺の駐車場が混雑することが予想されます。お越しの際は、なるべく<u className="decoration-black decoration-4 underline-offset-4">公共交通機関をご利用ください</u>。
+            </p>
+          </div>
         </section>
 
       </main>
