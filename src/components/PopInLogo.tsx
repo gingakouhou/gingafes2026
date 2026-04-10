@@ -17,7 +17,7 @@ export default function PopInLogo() {
       className="mb-6 relative w-full max-w-4xl flex justify-center mx-auto"
     >
       {/* 公式ロゴ画像 */}
-      <div className="relative w-full max-w-[800px] aspect-[16/10] drop-shadow-[8px_8px_0px_rgba(30,58,138,1)]">
+      <div className="relative w-full max-w-[800px] aspect-[16/10] drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] md:drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
         <Image 
           src="/logo.png" 
           alt="星瞬 -永炎の思い出を駆け抜けろ-" 
