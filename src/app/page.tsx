@@ -24,7 +24,7 @@ export default async function Home() {
       <div className="fixed top-0 right-0 w-1/2 h-full bg-blue-600/5 -skew-x-12 translate-x-32 pointer-events-none z-0" />
       <div className="fixed bottom-0 left-0 w-1/3 h-2/3 bg-orange-600/5 skew-x-12 -translate-x-16 pointer-events-none z-0" />
 
-      <main className="relative z-10 w-full max-w-6xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
+      <main className="relative z-10 w-full max-w-6xl px-4 pt-24 pb-8 mx-auto sm:px-6 lg:px-8">
         
         {/* --- HERO SECTION --- */}
         <section className="flex flex-col items-center justify-center min-h-[80vh] text-center mb-24 relative px-4">

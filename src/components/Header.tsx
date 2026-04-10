@@ -73,8 +73,8 @@ export default function Header() {
 
       {/* Mobile Navigation */}
       <div 
-        className={`md:hidden absolute top-full left-0 w-full bg-white border-b-4 border-black shadow-[0_8px_0px_rgba(0,0,0,1)] overflow-hidden transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "max-h-96 border-t-4" : "max-h-0 border-t-0"
+        className={`md:hidden absolute top-full left-0 w-full bg-white border-b-4 border-black shadow-[0_8px_0px_rgba(0,0,0,1)] overflow-y-auto transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? "max-h-[80vh] border-t-4" : "max-h-0 border-t-0"
         }`}
       >
         <nav className="flex flex-col px-4 py-4 space-y-4">
