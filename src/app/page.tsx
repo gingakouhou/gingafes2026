@@ -1,18 +1,10 @@
-import { ChevronDown, Calendar, MapPin, Image as ImageIcon, ArrowRight } from "lucide-react";
+import { ChevronDown, Calendar, MapPin, Image as ImageIcon, ArrowRight, Zap } from "lucide-react";
 import { getNewsList, getEventsList } from "@/lib/microcms";
 import Link from "next/link";
+import Image from "next/image";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
-
-// 日付を YYYY.MM.DD 形式にフォーマットするヘルパー
-function formatDate(dateString: string): string {
-  const d = new Date(dateString);
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, "0");
-  const day = String(d.getDate()).padStart(2, "0");
-  return `${y}.${m}.${day}`;
-}
 
 export default async function Home() {
   // microCMS からお知らせデータを取得
@@ -24,132 +16,144 @@ export default async function Home() {
   const eventList = eventsData.contents;
 
   return (
-    <div className="relative min-h-[calc(100vh-4rem)]">
-      {/* 常に背面にある星空・オーロラエフェクト (fixed) */}
-      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-indigo-600/20 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
-        <div className="absolute bottom-1/4 right-1/4 h-[600px] w-[600px] translate-x-1/4 translate-y-1/4 rounded-full bg-purple-600/10 mix-blend-screen blur-[120px] max-md:h-[300px] max-md:w-[300px]" />
+    <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
+      {/* 背景パターン: ドット */}
+      <div className="fixed inset-0 z-0 bg-dot-pattern opacity-10 pointer-events-none mix-blend-multiply" />
+
+      {/* スラッシュ状の背景装飾 */}
+      <div className="fixed top-0 right-0 w-1/2 h-full bg-blue-600/5 -skew-x-12 translate-x-32 pointer-events-none z-0" />
+      <div className="fixed bottom-0 left-0 w-1/3 h-2/3 bg-orange-600/5 skew-x-12 -translate-x-16 pointer-events-none z-0" />
+
+      <main className="relative z-10 w-full max-w-6xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
         
-        {/* 無数の星 */}
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white opacity-20 animate-twinkle"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`,
-            }}
-          />
-        ))}
-      </div>
-
-      {/* コンテンツ領域 */}
-      <div className="relative z-10 flex flex-col items-center">
-        {/* Hero セクション */}
-        <section className="flex min-h-[calc(100vh-4rem)] w-full flex-col items-center justify-center px-4 text-center">
-          <p className="mb-4 text-sm font-medium tracking-widest text-indigo-300 animate-fade-in-up [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] md:text-base">
-            2026年 開催決定
-          </p>
-
-          <h1 className="mb-6 text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-slate-100 to-indigo-200 animate-fade-in-up [animation-delay:500ms] opacity-0 [animation-fill-mode:forwards] drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] md:text-7xl lg:text-8xl">
-            ぎんが祭 <span className="text-indigo-400">2026</span>
-          </h1>
-
-          <p className="mt-2 text-lg font-light tracking-wider text-slate-300 animate-fade-in-up [animation-delay:800ms] opacity-0 [animation-fill-mode:forwards] md:text-2xl drop-shadow-md">
-            星のように輝く、僕らの青春
-          </p>
-
-          <div className="absolute bottom-12 flex flex-col items-center text-slate-400 animate-fade-in-up [animation-delay:1500ms] opacity-0 [animation-fill-mode:forwards]">
-            <span className="mb-2 text-xs font-medium tracking-widest uppercase">Scroll Down</span>
-            <ChevronDown className="h-6 w-6 animate-bounce" />
-          </div>
-        </section>
-
-        {/* News セクション */}
-        <section id="news" className="w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-wider md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-200 to-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
-              News
-            </h2>
-            <p className="mt-2 text-sm text-indigo-300/80 tracking-widest">お知らせ</p>
+        {/* --- HERO SECTION --- */}
+        <section className="flex flex-col items-center justify-center min-h-[80vh] text-center mb-24 relative px-4">
+          <div className="animate-brutal-slide mb-6 relative w-full max-w-4xl flex justify-center">
+            {/* 公式ロゴ画像 */}
+            <div className="relative w-full max-w-[800px] aspect-[16/10] drop-shadow-[8px_8px_0px_rgba(30,58,138,1)]">
+              <Image 
+                src="/logo.png" 
+                alt="星瞬 -永炎の思い出を駆け抜けろ-" 
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
           
-          <div className="space-y-4">
+          <div className="animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] mt-8 bg-blue-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform rotate-2">
+            <p className="text-xl md:text-3xl font-black tracking-widest uppercase">
+              Matsumoto Arigasaki High School Festival 2026
+            </p>
+          </div>
+
+          <p className="animate-fade-in-up mt-8 text-lg font-bold text-slate-700 bg-white px-6 py-2 border-2 border-black inline-block -rotate-1 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+            テーマソング：「キミシダイ列車」
+          </p>
+
+          <a 
+            href="#news"
+            className="mt-16 animate-fade-in-up group flex flex-col items-center text-blue-800 hover:text-orange-600 transition-colors"
+          >
+            <span className="text-sm font-black tracking-widest uppercase mb-2">Scroll Down</span>
+            <div className="p-3 bg-white border-2 border-current rounded-full shadow-[4px_4px_0px_rgba(0,0,0,1)] group-hover:translate-y-1 group-hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all">
+              <ChevronDown className="h-6 w-6 animate-bounce" />
+            </div>
+          </a>
+        </section>
+
+        {/* --- NEWS SECTION --- */}
+        <section id="news" className="py-20">
+          <div className="flex items-center gap-4 mb-12 animate-brutal-slide [animation-delay:100ms] opacity-0 [animation-fill-mode:forwards]">
+            <Zap className="h-10 w-10 text-orange-600 fill-orange-600" />
+            <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
+              News
+            </h2>
+            <div className="h-2 flex-grow bg-black ml-4" />
+          </div>
+
+          <div className="grid gap-6">
             {newsList.length > 0 ? (
-              newsList.map((news) => (
+              newsList.map((news, i) => (
                 <div 
                   key={news.id} 
-                  className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 rounded-2xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-xl transition-all hover:bg-white/20 hover:border-white/30 hover:-translate-y-1"
+                  className="animate-brutal-slide opacity-0 [animation-fill-mode:forwards] group flex flex-col sm:flex-row items-baseline gap-4 sm:gap-8 rounded-none border-4 border-black bg-white p-6 transition-all hover:-translate-y-1 hover:shadow-[10px_10px_0px_currentColor] text-blue-900"
+                  style={{ animationDelay: `${200 + i * 100}ms` }}
                 >
-                  <div className="flex items-center gap-2 text-indigo-300 whitespace-nowrap">
-                    <Calendar className="h-4 w-4" />
-                    <span className="text-sm font-medium tracking-wider">
-                      {formatDate(news.publishedAtDate || news.publishedAt || "")}
+                  <div className="flex items-center gap-2 sm:w-48 shrink-0 border-b-2 sm:border-b-0 sm:border-r-4 border-black pb-2 sm:pb-0 sm:pr-6 whitespace-nowrap">
+                    <Calendar className="h-5 w-5 text-orange-600" />
+                    <span className="font-bold text-lg tracking-wider">
+                      {new Date(news.publishedAtDate || news.publishedAt!).toLocaleDateString('ja-JP')}
                     </span>
                   </div>
-                  <p className="text-slate-200">{news.title}</p>
+                  <h3 className="text-xl font-bold group-hover:text-orange-600 transition-colors break-words">
+                    {news.title}
+                  </h3>
                 </div>
               ))
             ) : (
-              <p className="text-center text-slate-400">現在、お知らせはありません。</p>
+              <div className="bg-white border-4 border-black p-8 text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] font-bold text-lg">
+                現在お知らせはありません。
+              </div>
             )}
           </div>
         </section>
 
-        {/* Events セクション */}
-        <section id="events" className="w-full max-w-5xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="mb-12 text-center">
-            <h2 className="text-3xl font-bold tracking-wider md:text-4xl text-transparent bg-clip-text bg-gradient-to-r from-purple-200 to-white drop-shadow-[0_0_10px_rgba(255,255,255,0.3)]">
+        {/* --- EVENTS PREVIEW SECTION --- */}
+        <section className="py-20 mt-12">
+          <div className="flex items-center gap-4 mb-12 animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] flex-row-reverse">
+            <Zap className="h-10 w-10 text-blue-600 fill-blue-600" />
+            <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
               Events
             </h2>
-            <p className="mt-2 text-sm text-purple-300/80 tracking-widest">企画一覧</p>
+            <div className="h-2 flex-grow bg-black mr-4" />
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {eventList.length > 0 ? (
-              eventList.map((event) => (
+              eventList.map((event, i) => (
                 <div 
                   key={event.id} 
-                  className="group flex flex-col rounded-3xl border border-white/20 bg-white/10 backdrop-blur-md p-6 shadow-2xl transition-all hover:-translate-y-2 hover:bg-white/20 hover:border-white/30"
+                  className="animate-brutal-slide opacity-0 [animation-fill-mode:forwards] group flex flex-col border-4 border-black bg-white p-6 transition-all hover:-translate-y-2 hover:-rotate-1 hover:shadow-[12px_12px_0px_rgba(234,88,12,1)]"
+                  style={{ animationDelay: `${300 + i * 150}ms` }}
                 >
-                  {/* プレースホルダー画像部分（美しいグラデーション） */}
-                  <div className="mb-6 flex aspect-video w-full items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500/30 to-purple-500/30 text-white transition-opacity group-hover:opacity-80">
-                    <ImageIcon className="h-12 w-12 opacity-50 drop-shadow-md" />
+                  {/* プレースホルダー画像部分 */}
+                  <div className="mb-6 flex aspect-video w-full items-center justify-center border-4 border-black bg-blue-100 text-blue-600">
+                    <ImageIcon className="h-12 w-12 opacity-80" />
                   </div>
                   
-                  <div className="flex items-center gap-2 mb-3">
-                    <MapPin className="h-4 w-4 text-indigo-300" />
-                    <span className="text-xs font-semibold tracking-wider text-indigo-300">
+                  <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black inline-flex px-3 py-1 -skew-x-6">
+                    <MapPin className="h-4 w-4 text-orange-600 font-black" />
+                    <span className="text-sm font-black tracking-wider text-orange-900">
                       {event.location || event.category || "場所未定"}
                     </span>
                   </div>
                   
-                  <h3 className="mb-3 text-xl font-bold text-slate-100">{event.title}</h3>
-                  <p className="text-sm leading-relaxed text-slate-400">
-                    {event.description || ""}
+                  <h3 className="mb-3 text-2xl font-black text-black leading-tight">{event.title}</h3>
+                  <p className="text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-3">
+                    {event.description || "熱い企画が待っている！"}
                   </p>
                 </div>
               ))
             ) : (
-              <p className="text-center text-slate-400 col-span-3">現在、企画情報を準備中です。</p>
+              <div className="bg-white border-4 border-black p-8 text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] font-bold text-lg col-span-3">
+                現在、企画情報を準備中です。
+              </div>
             )}
           </div>
 
-          <div className="mt-12 text-center">
+          <div className="mt-16 text-center">
             <Link 
               href="/events"
-              className="inline-flex items-center gap-2 rounded-full border border-indigo-400/50 bg-indigo-500/10 px-8 py-4 text-sm font-medium tracking-widest text-indigo-300 transition-all hover:bg-indigo-500/20 hover:text-indigo-200 hover:shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:-translate-y-1"
+              className="inline-flex items-center gap-2 border-4 border-black bg-blue-600 px-8 py-4 text-lg font-black tracking-widest text-white uppercase transition-all hover:bg-orange-600 hover:-translate-y-1 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6"
             >
-              すべての企画を見る
-              <ArrowRight className="h-4 w-4" />
+              <span>すべての企画を見る</span>
+              <ArrowRight className="h-6 w-6" />
             </Link>
           </div>
         </section>
-      </div>
+
+      </main>
     </div>
   );
 }
