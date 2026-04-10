@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
+import PopInLogo from "@/components/PopInLogo";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
@@ -30,20 +31,7 @@ export default async function Home() {
         
         {/* --- HERO SECTION --- */}
         <section className="flex flex-col items-center justify-center min-h-[80vh] text-center mb-24 relative px-4">
-          <ScrollReveal>
-            <div className="mb-6 relative w-full max-w-4xl flex justify-center">
-              {/* 公式ロゴ画像 */}
-              <div className="relative w-full max-w-[800px] aspect-[16/10] drop-shadow-[8px_8px_0px_rgba(30,58,138,1)]">
-                <Image 
-                  src="/logo.png" 
-                  alt="星瞬 -永炎の思い出を駆け抜けろ-" 
-                  fill
-                  className="object-contain"
-                  priority
-                />
-              </div>
-            </div>
-          </ScrollReveal>
+          <PopInLogo />
           
           <ScrollReveal delay={0.15}>
             <div className="mt-8 bg-blue-600 text-white p-8 md:px-8 md:py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform rotate-2">
