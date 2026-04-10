@@ -3,6 +3,7 @@ import { getNewsList, getEventsList } from "@/lib/microcms";
 import Link from "next/link";
 import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
+import MotionCard from "@/components/MotionCard";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
@@ -29,36 +30,57 @@ export default async function Home() {
         
         {/* --- HERO SECTION --- */}
         <section className="flex flex-col items-center justify-center min-h-[80vh] text-center mb-24 relative px-4">
-          <div className="animate-brutal-slide mb-6 relative w-full max-w-4xl flex justify-center">
-            {/* 公式ロゴ画像 */}
-            <div className="relative w-full max-w-[800px] aspect-[16/10] drop-shadow-[8px_8px_0px_rgba(30,58,138,1)]">
-              <Image 
-                src="/logo.png" 
-                alt="星瞬 -永炎の思い出を駆け抜けろ-" 
-                fill
-                className="object-contain"
-                priority
-              />
+          <ScrollReveal>
+            <div className="mb-6 relative w-full max-w-4xl flex justify-center">
+              {/* 公式ロゴ画像 */}
+              <div className="relative w-full max-w-[800px] aspect-[16/10] drop-shadow-[8px_8px_0px_rgba(30,58,138,1)]">
+                <Image 
+                  src="/logo.png" 
+                  alt="星瞬 -永炎の思い出を駆け抜けろ-" 
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </div>
-          </div>
+          </ScrollReveal>
           
-          <div className="animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] mt-8 bg-blue-600 text-white p-8 md:px-8 md:py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform rotate-2">
-            <p className="text-xl md:text-3xl font-black tracking-widest uppercase">
-              Matsumoto Arigasaki High School Festival 2026
+          <ScrollReveal delay={0.15}>
+            <div className="mt-8 bg-blue-600 text-white p-8 md:px-8 md:py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform rotate-2">
+              <p className="text-xl md:text-3xl font-black tracking-widest uppercase">
+                Matsumoto Arigasaki High School Festival 2026
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.3}>
+            <p className="mt-8 text-lg font-bold text-slate-700 bg-white px-6 py-2 border-2 border-black inline-block -rotate-1 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+              テーマソング「キミシダイ列車」
             </p>
-          </div>
+          </ScrollReveal>
 
-          <p className="animate-fade-in-up mt-8 text-lg font-bold text-slate-700 bg-white px-6 py-2 border-2 border-black inline-block -rotate-1 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-            テーマソング：「キミシダイ列車」
-          </p>
-
+          {/* YouTube埋め込み - ONE OK ROCK「キミシダイ列車」 */}
           <ScrollReveal delay={0.4}>
+            <div className="mt-10 w-full max-w-2xl mx-auto border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-black -rotate-1 hover:rotate-0 transition-transform">
+              <div className="aspect-video">
+                <iframe
+                  src="https://www.youtube.com/embed/GfvorRUyy_w"
+                  title="ONE OK ROCK - キミシダイ列車"
+                  className="w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.55}>
             <a 
               href="#news"
               className="mt-16 group flex flex-col items-center text-blue-800 hover:text-orange-600 transition-colors"
             >
               <span className="text-sm font-black tracking-widest uppercase mb-2">Scroll Down</span>
-              <div className="p-3 bg-white border-2 border-current rounded-full shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-1 group-active:translate-y-2 group-active:translate-x-1 group-active:shadow-none transition-all">
+              <div className="p-3 bg-white border-2 border-current rounded-full shadow-[4px_4px_0px_rgba(0,0,0,1)] group-hover:translate-y-1 group-hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all">
                 <ChevronDown className="h-6 w-6 animate-bounce" />
               </div>
             </a>
@@ -67,20 +89,23 @@ export default async function Home() {
 
         {/* --- NEWS SECTION --- */}
         <section id="news" className="py-20">
-          <div className="flex items-center gap-4 mb-12 animate-brutal-slide [animation-delay:100ms] opacity-0 [animation-fill-mode:forwards]">
-            <Zap className="h-10 w-10 text-orange-600 fill-orange-600" />
-            <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
-              News
-            </h2>
-            <div className="h-2 flex-grow bg-black ml-4" />
-          </div>
+          <ScrollReveal direction="left">
+            <div className="flex items-center gap-4 mb-12">
+              <Zap className="h-10 w-10 text-orange-600 fill-orange-600" />
+              <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
+                News
+              </h2>
+              <div className="h-2 flex-grow bg-black ml-4" />
+            </div>
+          </ScrollReveal>
 
           <div className="grid gap-6">
             {newsList.length > 0 ? (
               newsList.map((news, i) => (
-                <ScrollReveal key={news.id} delay={i * 0.1}>
-                  <div 
-                    className="group flex flex-col sm:flex-row items-baseline gap-4 sm:gap-8 rounded-none border-4 border-black bg-white p-6 transition-all hover:bg-slate-50 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_currentColor] active:translate-y-2 active:translate-x-2 active:shadow-none text-blue-900"
+                <ScrollReveal key={news.id} delay={i * 0.1} direction={i % 2 === 0 ? "left" : "right"}>
+                  <MotionCard
+                    className="group flex flex-col sm:flex-row items-baseline gap-4 sm:gap-8 rounded-none border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] text-blue-900 cursor-pointer"
+                    hoverColor="rgba(37,99,235,1)"
                   >
                     <div className="flex items-center gap-2 sm:w-48 shrink-0 border-b-2 sm:border-b-0 sm:border-r-4 border-black pb-2 sm:pb-0 sm:pr-6 whitespace-nowrap">
                       <Calendar className="h-5 w-5 text-orange-600" />
@@ -91,7 +116,7 @@ export default async function Home() {
                     <h3 className="text-xl font-bold group-hover:text-orange-600 transition-colors break-words">
                       {news.title}
                     </h3>
-                  </div>
+                  </MotionCard>
                 </ScrollReveal>
               ))
             ) : (
@@ -104,27 +129,30 @@ export default async function Home() {
 
         {/* --- EVENTS PREVIEW SECTION --- */}
         <section className="py-20 mt-12">
-          <div className="flex items-center gap-4 mb-12 animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] flex-row-reverse">
-            <Zap className="h-10 w-10 text-blue-600 fill-blue-600" />
-            <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
-              Events
-            </h2>
-            <div className="h-2 flex-grow bg-black mr-4" />
-          </div>
+          <ScrollReveal direction="right">
+            <div className="flex items-center gap-4 mb-12 flex-row-reverse">
+              <Zap className="h-10 w-10 text-blue-600 fill-blue-600" />
+              <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
+                Events
+              </h2>
+              <div className="h-2 flex-grow bg-black mr-4" />
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
             {eventList.length > 0 ? (
               eventList.map((event, i) => (
-                <ScrollReveal key={event.id} delay={i * 0.1}>
-                  <div 
-                    className="group flex flex-col border-4 border-black bg-white p-6 transition-all cursor-pointer hover:bg-slate-50 hover:-translate-y-2 hover:-translate-x-2 hover:-rotate-1 hover:shadow-[16px_16px_0px_rgba(234,88,12,1)] active:translate-y-2 active:translate-x-2 active:shadow-none"
+                <ScrollReveal key={event.id} delay={i * 0.12}>
+                  <MotionCard
+                    className="group flex flex-col border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
+                    hoverColor="rgba(234,88,12,1)"
                   >
                     {/* プレースホルダー画像部分 */}
                     <div className="mb-6 flex aspect-video w-full items-center justify-center border-4 border-black bg-blue-100 text-blue-600 transition-colors group-hover:bg-orange-100 group-hover:text-orange-600">
                       <ImageIcon className="h-12 w-12 opacity-80" />
                     </div>
                     
-                    <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black inline-flex px-3 py-1 -skew-x-6 w-fit">
+                    <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
                       <MapPin className="h-4 w-4 text-orange-600 font-black" />
                       <span className="text-sm font-black tracking-wider text-orange-900">
                         {event.location || event.category || "場所未定"}
@@ -135,7 +163,7 @@ export default async function Home() {
                     <p className="text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-3">
                       {event.description || "熱い企画が待っている！"}
                     </p>
-                  </div>
+                  </MotionCard>
                 </ScrollReveal>
               ))
             ) : (
@@ -145,15 +173,19 @@ export default async function Home() {
             )}
           </div>
 
-          <div className="mt-16 text-center">
-            <Link 
-              href="/events"
-              className="inline-flex items-center gap-2 border-4 border-black bg-blue-600 px-8 py-4 text-lg font-black tracking-widest text-white uppercase transition-all hover:bg-orange-600 hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] active:translate-y-2 active:translate-x-2 active:shadow-none -skew-x-6"
-            >
-              <span>すべての企画を見る</span>
-              <ArrowRight className="h-6 w-6" />
-            </Link>
-          </div>
+          <ScrollReveal delay={0.3}>
+            <div className="mt-16 text-center">
+              <MotionCard
+                className="inline-flex items-center gap-2 border-4 border-black bg-blue-600 px-8 py-4 text-lg font-black tracking-widest text-white uppercase shadow-[6px_6px_0px_rgba(0,0,0,1)] -skew-x-6 cursor-pointer"
+                hoverColor="rgba(234,88,12,1)"
+              >
+                <Link href="/events" className="flex items-center gap-2">
+                  <span>すべての企画を見る</span>
+                  <ArrowRight className="h-6 w-6" />
+                </Link>
+              </MotionCard>
+            </div>
+          </ScrollReveal>
         </section>
 
       </main>

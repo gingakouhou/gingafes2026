@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ChevronDown, MessageCircleQuestion, HelpCircle } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import MotionCard from "@/components/MotionCard";
 
 const faqs = [
   {
@@ -27,9 +28,10 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <ScrollReveal delay={index * 0.1}>
-      <div 
-        className={`border-4 border-black bg-white transition-all duration-300 ${isOpen ? "shadow-[8px_8px_0px_rgba(234,88,12,1)] -translate-y-1 -translate-x-1" : "shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_rgba(37,99,235,1)] active:translate-y-2 active:translate-x-2 active:shadow-none"}`}
+    <ScrollReveal delay={index * 0.1} direction={index % 2 === 0 ? "left" : "right"}>
+      <MotionCard
+        className={`border-4 border-black bg-white transition-colors duration-300 ${isOpen ? "shadow-[8px_8px_0px_rgba(234,88,12,1)]" : "shadow-[6px_6px_0px_rgba(0,0,0,1)]"}`}
+        hoverColor={isOpen ? "rgba(234,88,12,1)" : "rgba(37,99,235,1)"}
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -37,7 +39,7 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
           aria-expanded={isOpen}
         >
           <div className="flex items-center gap-4">
-            <div className={`p-2 border-4 border-black transition-colors flex-shrink-0 -skew-x-6 ${isOpen ? "bg-orange-500 text-white translate-y-1 shadow-none" : "bg-blue-200 text-blue-900 shadow-[2px_2px_0px_rgba(0,0,0,1)]"}`}>
+            <div className={`p-2 border-4 border-black transition-colors flex-shrink-0 -skew-x-6 ${isOpen ? "bg-orange-500 text-white" : "bg-blue-200 text-blue-900"}`}>
               <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8" />
             </div>
             <span className={`text-lg sm:text-xl font-black transition-colors ${isOpen ? "text-orange-600" : "text-black"}`}>
@@ -49,7 +51,7 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
           </div>
         </button>
         
-        {/* Tailwindのgridを用いたスムーズな開閉アニメーション + バウンス感 */}
+        {/* スムーズな開閉アニメーション */}
         <div 
           className={`grid transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-top ${isOpen ? "grid-rows-[1fr] opacity-100 scale-y-100" : "grid-rows-[0fr] opacity-0 scale-y-95 pointer-events-none"}`}
         >
@@ -62,7 +64,7 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
             </div>
           </div>
         </div>
-      </div>
+      </MotionCard>
     </ScrollReveal>
   );
 }
@@ -79,19 +81,21 @@ export default function FAQPage() {
 
       <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
-        <div className="mb-16 text-center animate-brutal-slide">
-          <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6">
-            <div className="flex items-center justify-center gap-4">
-              <MessageCircleQuestion className="w-10 h-10 border-2 border-white p-1" />
-              <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
-                Q&A
-              </h1>
+        <ScrollReveal>
+          <div className="mb-16 text-center">
+            <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6">
+              <div className="flex items-center justify-center gap-4">
+                <MessageCircleQuestion className="w-10 h-10 border-2 border-white p-1" />
+                <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
+                  Q&A
+                </h1>
+              </div>
             </div>
+            <p className="mt-8 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] -rotate-1">
+              よくある質問
+            </p>
           </div>
-          <p className="mt-8 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] -rotate-1">
-            よくある質問
-          </p>
-        </div>
+        </ScrollReveal>
 
         <div className="space-y-6">
           {faqs.map((faq, index) => (

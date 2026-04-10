@@ -1,5 +1,6 @@
-import { MapPin, Train, Bus, AlertTriangle, Zap } from "lucide-react";
+import { Train, Bus, AlertTriangle } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
+import MotionCard from "@/components/MotionCard";
 
 export default function AccessPage() {
   return (
@@ -13,18 +14,20 @@ export default function AccessPage() {
 
       <main className="relative z-10 w-full max-w-5xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
-        <div className="mb-16 text-center animate-brutal-slide">
-           <div className="inline-block bg-blue-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] skew-x-6 transform -rotate-1">
-            <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
-              Access
-            </h1>
+        <ScrollReveal>
+          <div className="mb-16 text-center">
+            <div className="inline-block bg-blue-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] skew-x-6 transform -rotate-1">
+              <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
+                Access
+              </h1>
+            </div>
+            <p className="mt-6 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] rotate-2">
+              会場へのアクセス
+            </p>
           </div>
-          <p className="mt-6 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] rotate-2">
-            会場へのアクセス
-          </p>
-        </div>
+        </ScrollReveal>
 
-        {/* マッププレースホルダー */}
+        {/* Googleマップ */}
         <ScrollReveal delay={0.2}>
           <div className="mb-16 relative flex w-full aspect-video items-center justify-center border-4 border-black bg-blue-100 shadow-[12px_12px_0px_rgba(0,0,0,1)] overflow-hidden">
             <iframe 
@@ -43,8 +46,11 @@ export default function AccessPage() {
         {/* 交通機関案内 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* 電車 */}
-          <ScrollReveal delay={0.3}>
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all cursor-pointer hover:border-blue-600 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_rgba(37,99,235,1)] active:translate-y-2 active:translate-x-2 active:shadow-none h-full">
+          <ScrollReveal delay={0.3} direction="left">
+            <MotionCard
+              className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer h-full"
+              hoverColor="rgba(37,99,235,1)"
+            >
               <div className="flex-shrink-0 bg-blue-100 border-4 border-black p-4 -skew-x-6 rotate-3">
                 <Train className="w-10 h-10 text-blue-700" />
               </div>
@@ -55,28 +61,31 @@ export default function AccessPage() {
                   東口より徒歩約<span className="text-blue-600 text-xl font-black">20</span>分
                 </p>
               </div>
-            </div>
+            </MotionCard>
           </ScrollReveal>
 
           {/* バス */}
-          <ScrollReveal delay={0.4}>
-            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all cursor-pointer hover:border-orange-600 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_rgba(234,88,12,1)] active:translate-y-2 active:translate-x-2 active:shadow-none h-full">
+          <ScrollReveal delay={0.4} direction="right">
+            <MotionCard
+              className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer h-full"
+              hoverColor="rgba(234,88,12,1)"
+            >
               <div className="flex-shrink-0 bg-orange-100 border-4 border-black p-4 -skew-x-6 -rotate-3">
                 <Bus className="w-10 h-10 text-orange-700" />
               </div>
               <div className="text-center sm:text-left mt-4 sm:mt-0">
                 <h3 className="text-2xl font-black text-black mb-2 uppercase">バスをご利用の場合</h3>
                 <p className="text-slate-800 font-bold leading-relaxed">
-                  「生垣高校前」バス停下車すぐ
+                  「蟻ヶ崎高校前」バス停 下車すぐ
                 </p>
               </div>
-            </div>
+            </MotionCard>
           </ScrollReveal>
         </div>
 
         {/* 注意事項 */}
         <ScrollReveal delay={0.5}>
-          <section className="relative flex flex-col sm:flex-row items-center gap-6 border-4 border-black bg-orange-500 p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_rgba(0,0,0,1)] active:translate-y-2 active:translate-x-2 active:shadow-none cursor-pointer">
+          <section className="relative flex flex-col sm:flex-row items-center gap-6 border-4 border-black bg-orange-500 p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] overflow-hidden">
             {/* しましま背景装飾 */}
             <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px)' }}></div>
             

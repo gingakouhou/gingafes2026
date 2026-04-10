@@ -1,6 +1,7 @@
 import { Image as ImageIcon, MapPin } from "lucide-react";
 import { getEventsList, type Event } from "@/lib/microcms";
 import ScrollReveal from "@/components/ScrollReveal";
+import MotionCard from "@/components/MotionCard";
 
 // ISR: 60秒ごとにキャッシュを再検証
 export const revalidate = 60;
@@ -15,15 +16,16 @@ const categories = [
 function renderEventCard(event: Event) {
   return (
     <ScrollReveal key={event.id}>
-      <div 
-        className="group flex flex-col h-full border-4 border-black bg-white p-6 transition-all cursor-pointer hover:border-blue-600 hover:-translate-y-2 hover:-translate-x-2 hover:-rotate-1 shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:shadow-[16px_16px_0px_rgba(37,99,235,1)] active:translate-y-2 active:translate-x-2 active:shadow-none"
+      <MotionCard
+        className="group flex flex-col h-full border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
+        hoverColor="rgba(37,99,235,1)"
       >
         {/* プレースホルダー画像部分 */}
         <div className="mb-6 flex aspect-video w-full items-center justify-center border-4 border-black bg-blue-100 text-blue-600 transition-colors group-hover:bg-orange-100 group-hover:text-orange-600">
           <ImageIcon className="h-12 w-12 opacity-80" />
         </div>
         
-        <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black inline-flex px-3 py-1 -skew-x-6 w-fit">
+        <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
           <MapPin className="h-4 w-4 text-orange-600 font-black" />
           <span className="text-sm font-black tracking-wider text-orange-900">
             {event.location || event.category || "場所未定"}
@@ -34,7 +36,7 @@ function renderEventCard(event: Event) {
         <p className="text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-3">
           {event.description || "熱い企画が待っている！"}
         </p>
-      </div>
+      </MotionCard>
     </ScrollReveal>
   );
 }
@@ -54,28 +56,29 @@ export default async function EventsPage() {
 
       <main className="relative z-10 w-full max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
-        <div className="mb-16 text-center animate-brutal-slide">
-           <div className="inline-block bg-blue-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform -rotate-2">
-            <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
-              Events
-            </h1>
+        <ScrollReveal>
+          <div className="mb-16 text-center">
+            <div className="inline-block bg-blue-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform -rotate-2">
+              <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
+                Events
+              </h1>
+            </div>
+            <p className="mt-6 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] rotate-1">
+              企画・発表一覧
+            </p>
           </div>
-          <p className="mt-6 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] rotate-1">
-            企画・発表一覧
-          </p>
-        </div>
+        </ScrollReveal>
 
         {allEvents.length > 0 ? (
           <div className="space-y-24">
             {(() => {
-              // カテゴリ別にフィルタし、該当があるカテゴリのみ表示
               const categorizedSections = categories
-                .map((cat, catIdx) => {
+                .map((cat) => {
                   const filtered = allEvents.filter((e) => e.category === cat.key);
                   if (filtered.length === 0) return null;
                   return (
                     <section key={cat.key}>
-                      <ScrollReveal delay={0.1}>
+                      <ScrollReveal delay={0.1} direction="left">
                         <div className={`flex items-center gap-4 mb-10 border-b-4 ${cat.borderColor} pb-4`}>
                           <span className="text-4xl bg-white border-4 border-black p-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] -skew-x-6">{cat.emoji}</span>
                           <h2 className="text-3xl font-black tracking-tighter text-black uppercase italic -skew-x-12">{cat.label}</h2>
@@ -89,11 +92,10 @@ export default async function EventsPage() {
                 })
                 .filter(Boolean);
 
-              // カテゴリ別の表示が1つもない場合は、全件を「すべての企画」として表示
               if (categorizedSections.length === 0) {
                 return (
                   <section>
-                    <ScrollReveal delay={0.1}>
+                    <ScrollReveal delay={0.1} direction="left">
                       <div className="flex items-center gap-4 mb-10 border-b-4 border-black pb-4">
                         <span className="text-4xl bg-white border-4 border-black p-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] -skew-x-6">🎪</span>
                         <h2 className="text-3xl font-black tracking-tighter text-black uppercase italic -skew-x-12">すべての企画</h2>
