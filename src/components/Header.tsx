@@ -35,14 +35,16 @@ export default function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
-          {/* Logo */}
+          {/* Logo (Box Style) */}
           <Link 
             href="/" 
-            className="flex items-center gap-2 group"
+            className="flex items-center group active:scale-95 transition-transform"
           >
-            <span className="text-2xl font-black tracking-tighter text-black -skew-x-12 group-hover:text-orange-600 transition-colors uppercase">
-              SEISHUN <span className="text-orange-600 tracking-normal text-xl ml-1 group-hover:text-black">'26</span>
-            </span>
+            <div className="bg-black text-white px-4 py-1 border-4 border-black group-hover:bg-white group-hover:text-black transition-colors -skew-x-12">
+              <span className="text-2xl font-black tracking-tighter uppercase leading-none">
+                SEISHUN <span className="text-orange-600 tracking-normal text-xl ml-1 group-hover:text-orange-600">'26</span>
+              </span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,7 +53,7 @@ export default function Header() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="relative text-sm font-bold tracking-widest text-blue-900 uppercase transition-colors hover:text-orange-600 group"
+                className="relative text-sm font-bold tracking-widest text-blue-900 uppercase transition-colors hover:text-orange-600 group active:scale-95"
               >
                 {link.name}
                 {/* 炎のようなオレンジのアンダーラインエフェクト */}
@@ -62,7 +64,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-4 -m-2 text-black hover:text-orange-600 hover:border-black transition-all bg-transparent"
+            className="md:hidden p-4 -m-2 text-black hover:text-orange-600 hover:border-black transition-all bg-transparent active:scale-90"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -79,10 +81,10 @@ export default function Header() {
       >
         <nav className="flex flex-col px-4 py-4 space-y-4">
           {navLinks.map((link) => (
-            <Link
+              <Link
               key={link.name}
               href={link.href}
-              className="text-lg font-black tracking-widest text-blue-900 uppercase px-4 py-3 border-2 border-black hover:bg-orange-600 hover:text-white hover:translate-x-2 transition-all -skew-x-6"
+              className="text-lg font-black tracking-widest text-blue-900 uppercase px-4 py-3 border-2 border-black bg-white hover:bg-orange-600 hover:text-white hover:-translate-y-1 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:translate-x-1 active:shadow-none transition-all -skew-x-6 block"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               <div className="skew-x-6">{link.name}</div>

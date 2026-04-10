@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown, MessageCircleQuestion, HelpCircle } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const faqs = [
   {
@@ -26,10 +27,10 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div 
-      className={`animate-brutal-slide opacity-0 [animation-fill-mode:forwards] border-4 border-black bg-white transition-all duration-300 ${isOpen ? "shadow-[8px_8px_0px_rgba(234,88,12,1)] -translate-y-1" : "shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:shadow-[12px_12px_0px_rgba(37,99,235,1)]"}`}
-      style={{ animationDelay: `${200 + index * 100}ms` }}
-    >
+    <ScrollReveal delay={index * 0.1}>
+      <div 
+        className={`border-4 border-black bg-white transition-all duration-300 ${isOpen ? "shadow-[8px_8px_0px_rgba(234,88,12,1)] -translate-y-1 -translate-x-1" : "shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_rgba(37,99,235,1)] active:translate-y-2 active:translate-x-2 active:shadow-none"}`}
+      >
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus:ring-4 focus:ring-blue-600/50"
@@ -63,7 +64,7 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
           </div>
         </div>
       </div>
-    </div>
+    </ScrollReveal>
   );
 }
 

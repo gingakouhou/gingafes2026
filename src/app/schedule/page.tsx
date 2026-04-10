@@ -1,4 +1,5 @@
 import { Clock, MapPin, Sparkles, Zap } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function SchedulePage() {
   const scheduleData = [
@@ -41,13 +42,13 @@ export default function SchedulePage() {
             const isEven = index % 2 === 0;
 
             return (
-              <div 
+              <ScrollReveal 
                 key={index} 
-                className={`mb-16 flex justify-between items-center w-full animate-brutal-slide opacity-0 [animation-fill-mode:forwards]
+                delay={0.1}
+                className={`mb-16 flex justify-between items-center w-full
                   ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'}
                   flex-row-reverse relative z-10
                 `}
-                style={{ animationDelay: `${200 + index * 150}ms` }}
               >
                 {/* PC時の余白調整（スマホ時は非表示） */}
                 <div className="hidden md:block w-5/12"></div>
@@ -58,7 +59,7 @@ export default function SchedulePage() {
                 </div>
 
                 {/* スケジュールカード (ネオブルータリズム) */}
-                <div className="w-[calc(100%-4rem)] md:w-5/12 border-4 border-black bg-white p-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all hover:border-orange-600 hover:shadow-[12px_12px_0px_rgba(234,88,12,1)] hover:-translate-y-2 hover:-rotate-1 relative">
+                <div className="w-[calc(100%-4rem)] md:w-5/12 border-4 border-black bg-white p-6 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all cursor-pointer hover:border-orange-600 hover:shadow-[12px_12px_0px_rgba(234,88,12,1)] hover:-translate-y-2 hover:-translate-x-2 hover:-rotate-1 active:translate-y-2 active:translate-x-2 active:shadow-none active:rotate-0 relative">
                   
                   {/* アメコミ風の時間バッジ */}
                   <div className="absolute -top-5 -left-2 bg-black text-white px-3 py-1 font-black text-xl md:text-2xl -skew-x-12 transform -rotate-3 border-4 border-white shadow-[4px_4px_0px_rgba(0,0,0,1)] flex items-center gap-2">

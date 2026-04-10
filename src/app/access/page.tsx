@@ -1,4 +1,5 @@
 import { MapPin, Train, Bus, AlertTriangle, Zap } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function AccessPage() {
   return (
@@ -24,8 +25,8 @@ export default function AccessPage() {
         </div>
 
         {/* マッププレースホルダー */}
-        <section className="mb-16 animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards]">
-          <div className="relative flex w-full aspect-video items-center justify-center border-4 border-black bg-blue-100 shadow-[12px_12px_0px_rgba(0,0,0,1)] overflow-hidden">
+        <ScrollReveal delay={0.2}>
+          <div className="mb-16 relative flex w-full aspect-video items-center justify-center border-4 border-black bg-blue-100 shadow-[12px_12px_0px_rgba(0,0,0,1)] overflow-hidden">
             <iframe 
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1608.967924736025!2d137.96395867129468!3d36.241052283868164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601d0e813c4eb843%3A0x7fd4c64a8d1a0efa!2z44CSMzkwLTA4NjEg6ZW36YeO55yM5p2-5pys5biC6J-744Kx5bSO77yR5LiB55uu77yR4oiS77yV77yUIOifu-OCseW0jumrmOagoeWQjOeqk-S8mumkqA!5e0!3m2!1sja!2sjp!4v1773991075368!5m2!1sja!2sjp" 
               className="w-full h-full border-0 filter contrast-125 saturate-150 relative z-10" 
@@ -37,12 +38,13 @@ export default function AccessPage() {
             <div className="absolute -top-4 -left-12 w-32 h-8 bg-orange-600 opacity-80 -rotate-45 z-20"></div>
             <div className="absolute -bottom-4 -right-12 w-32 h-8 bg-blue-600 opacity-80 -rotate-45 z-20"></div>
           </div>
-        </section>
+        </ScrollReveal>
 
         {/* 交通機関案内 */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
           {/* 電車 */}
-          <section className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all hover:border-blue-600 hover:-translate-y-1 hover:shadow-[12px_12px_0px_rgba(37,99,235,1)] animate-brutal-slide [animation-delay:300ms] opacity-0 [animation-fill-mode:forwards]">
+          <ScrollReveal delay={0.3}>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all cursor-pointer hover:border-blue-600 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_rgba(37,99,235,1)] active:translate-y-2 active:translate-x-2 active:shadow-none h-full">
             <div className="flex-shrink-0 bg-blue-100 border-4 border-black p-4 -skew-x-6 rotate-3">
               <Train className="w-10 h-10 text-blue-700" />
             </div>
@@ -53,10 +55,11 @@ export default function AccessPage() {
                 東口より徒歩約<span className="text-blue-600 text-xl font-black">20</span>分
               </p>
             </div>
-          </section>
+          </ScrollReveal>
 
           {/* バス */}
-          <section className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all hover:border-orange-600 hover:-translate-y-1 hover:shadow-[12px_12px_0px_rgba(234,88,12,1)] animate-brutal-slide [animation-delay:400ms] opacity-0 [animation-fill-mode:forwards]">
+          <ScrollReveal delay={0.4}>
+            <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 border-4 border-black bg-white p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all cursor-pointer hover:border-orange-600 hover:-translate-y-2 hover:-translate-x-2 hover:shadow-[16px_16px_0px_rgba(234,88,12,1)] active:translate-y-2 active:translate-x-2 active:shadow-none h-full">
             <div className="flex-shrink-0 bg-orange-100 border-4 border-black p-4 -skew-x-6 -rotate-3">
               <Bus className="w-10 h-10 text-orange-700" />
             </div>
@@ -66,11 +69,13 @@ export default function AccessPage() {
                 「生垣高校前」バス停下車すぐ
               </p>
             </div>
-          </section>
+          </ScrollReveal>
         </div>
 
         {/* 注意事項 */}
-        <section className="relative flex flex-col sm:flex-row items-center gap-6 border-4 border-black bg-orange-500 p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] animate-brutal-slide [animation-delay:500ms] opacity-0 [animation-fill-mode:forwards] overflow-hidden">
+        {/* 注意事項 */}
+        <ScrollReveal delay={0.5}>
+          <section className="relative flex flex-col sm:flex-row items-center gap-6 border-4 border-black bg-orange-500 p-8 shadow-[8px_8px_0px_rgba(0,0,0,1)] overflow-hidden transition-all hover:-translate-y-1 hover:-translate-x-1 hover:shadow-[12px_12px_0px_rgba(0,0,0,1)] active:translate-y-2 active:translate-x-2 active:shadow-none cursor-pointer">
           {/* しましま背景装飾 */}
           <div className="absolute inset-0 opacity-20 pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #000 10px, #000 20px)' }}></div>
           
@@ -85,7 +90,8 @@ export default function AccessPage() {
               当日は高校周辺の駐車場が混雑することが予想されます。お越しの際は、なるべく<u className="decoration-black decoration-4 underline-offset-4">公共交通機関をご利用ください</u>。
             </p>
           </div>
-        </section>
+          </section>
+        </ScrollReveal>
 
       </main>
     </div>
