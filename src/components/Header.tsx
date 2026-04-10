@@ -40,8 +40,8 @@ export default function Header() {
             href="/" 
             className="flex items-center gap-2 group"
           >
-            <span className="text-2xl font-black tracking-tighter text-blue-800 -skew-x-12 group-hover:text-orange-600 transition-colors">
-              星瞬 <span className="text-orange-600 tracking-normal text-xl ml-1 group-hover:text-blue-800">2026</span>
+            <span className="text-2xl font-black tracking-tighter text-black -skew-x-12 group-hover:text-orange-600 transition-colors uppercase">
+              SEISHUN <span className="text-orange-600 tracking-normal text-xl ml-1 group-hover:text-black">'26</span>
             </span>
           </Link>
 
@@ -62,11 +62,11 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 text-blue-900 hover:text-orange-600 border-2 border-transparent hover:border-black hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all bg-white"
+            className="md:hidden p-4 -m-2 text-black hover:text-orange-600 hover:border-black transition-all bg-transparent"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
           >
-            {isMobileMenuOpen ? <X className="h-7 w-7 stroke-[3]" /> : <Menu className="h-7 w-7 stroke-[3]" />}
+            {isMobileMenuOpen ? <X className="h-8 w-8 stroke-[3]" /> : <Menu className="h-8 w-8 stroke-[3]" />}
           </button>
         </div>
       </div>

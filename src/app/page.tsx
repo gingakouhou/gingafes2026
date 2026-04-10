@@ -24,7 +24,7 @@ export default async function Home() {
       <div className="fixed top-0 right-0 w-1/2 h-full bg-blue-600/5 -skew-x-12 translate-x-32 pointer-events-none z-0" />
       <div className="fixed bottom-0 left-0 w-1/3 h-2/3 bg-orange-600/5 skew-x-12 -translate-x-16 pointer-events-none z-0" />
 
-      <main className="relative z-10 w-full max-w-6xl px-4 pt-24 pb-8 mx-auto sm:px-6 lg:px-8">
+      <main className="relative z-10 w-full max-w-6xl px-4 pt-32 pb-8 mx-auto sm:px-6 lg:px-8">
         
         {/* --- HERO SECTION --- */}
         <section className="flex flex-col items-center justify-center min-h-[80vh] text-center mb-24 relative px-4">
@@ -41,7 +41,7 @@ export default async function Home() {
             </div>
           </div>
           
-          <div className="animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] mt-8 bg-blue-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform rotate-2">
+          <div className="animate-brutal-slide [animation-delay:200ms] opacity-0 [animation-fill-mode:forwards] mt-8 bg-blue-600 text-white p-8 md:px-8 md:py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform rotate-2">
             <p className="text-xl md:text-3xl font-black tracking-widest uppercase">
               Matsumoto Arigasaki High School Festival 2026
             </p>
