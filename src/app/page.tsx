@@ -5,7 +5,8 @@ import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 import PopInLogo from "@/components/PopInLogo";
-import Splash from "@/components/Splash";
+import EntranceGate from "@/components/EntranceGate";
+import YouTubeEmbed from "@/components/YouTubeEmbed";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
@@ -21,7 +22,7 @@ export default async function Home() {
 
   return (
     <>
-      <Splash />
+      <EntranceGate />
       <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
       {/* 背景パターン: ドット */}
       <div className="fixed inset-0 z-0 bg-dot-pattern opacity-10 pointer-events-none mix-blend-multiply" />
@@ -52,17 +53,7 @@ export default async function Home() {
 
           {/* YouTube埋め込み - ONE OK ROCK「キミシダイ列車」 */}
           <ScrollReveal delay={0.4}>
-            <div className="mt-10 w-full max-w-2xl mx-auto border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-black -rotate-1 hover:rotate-0 transition-transform">
-              <div className="aspect-video">
-                <iframe
-                  src="https://www.youtube.com/embed/GfvorRUyy_w"
-                  title="ONE OK ROCK - キミシダイ列車"
-                  className="w-full h-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-            </div>
+            <YouTubeEmbed />
           </ScrollReveal>
 
           <ScrollReveal delay={0.55}>
