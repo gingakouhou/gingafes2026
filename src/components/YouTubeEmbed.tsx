@@ -17,7 +17,7 @@ export default function YouTubeEmbed({ onPlayerReady }: YouTubeEmbedProps) {
     <div className="mt-10 w-full max-w-2xl mx-auto border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-black -rotate-1 hover:rotate-0 transition-transform overflow-hidden">
       <div className="aspect-video">
         <YouTube
-          videoId="P6aZ4A950z0"
+          videoId="GfvorRUyy_w"
           className="w-full h-full"
           iframeClassName="w-full h-full"
           onReady={onReady}
