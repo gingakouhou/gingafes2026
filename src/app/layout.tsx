@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import ClientLayout from "@/components/ClientLayout";
 
 export const metadata: Metadata = {
   title: "ぎんが祭 2026",
@@ -30,9 +31,11 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col bg-[#f8f9fa] text-slate-900 antialiased selection:bg-blue-600 selection:text-white`}
       >
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <ClientLayout>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ClientLayout>
       </body>
     </html>
   );
