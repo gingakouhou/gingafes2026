@@ -23,8 +23,6 @@ export default function EntranceGate({ player, onEnter }: EntranceGateProps) {
   }, [isEntered]);
 
   const handleEnter = () => {
-    // ユーザーインタラクションのコンテキスト内で直接 playVideo() を呼ぶ
-    // → ブラウザの自動再生ブロックを回避
     onEnter();
     setIsEntered(true);
     document.body.style.overflow = "";
@@ -37,37 +35,32 @@ export default function EntranceGate({ player, onEnter }: EntranceGateProps) {
       {!isEntered && (
         <motion.div
           key="entrance-gate"
-          className="fixed inset-0 z-[100] flex items-center justify-center"
+          className="fixed inset-0 z-[100]"
         >
-          {/* 上半分 */}
+          {/* 背景: 上半分 */}
           <motion.div
-            className="absolute top-0 left-0 w-full h-[50.5vh] bg-black"
-            initial={{ y: 0 }}
+            className="absolute top-0 left-0 w-full h-1/2 bg-black"
             exit={{ y: "-100%" }}
             transition={{ duration: 0.28, ease: [0.95, 0, 1, 1] }}
           />
 
-          {/* 下半分 */}
+          {/* 背景: 下半分 */}
           <motion.div
-            className="absolute bottom-0 left-0 w-full h-[50.5vh] bg-black"
-            initial={{ y: 0 }}
+            className="absolute bottom-0 left-0 w-full h-1/2 bg-black"
             exit={{ y: "100%" }}
             transition={{ duration: 0.28, ease: [0.95, 0, 1, 1] }}
           />
 
-          {/* 中央のコンテンツ */}
+          {/* コンテンツ: 純粋なFlexbox配置（absoluteなし） */}
           <motion.div
-            className="relative z-10 flex flex-col items-center justify-center gap-8 px-6 w-full min-h-screen"
-            initial={{ opacity: 1 }}
+            className="relative z-10 flex flex-col items-center justify-center gap-8 px-6 min-h-[100dvh]"
             exit={{ opacity: 0, scale: 1.3 }}
             transition={{ duration: 0.15 }}
           >
-            {/* SEISHUN '26 ロゴ */}
-            <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-widest text-center leading-none">
-              SEISHUN &apos;26
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-white tracking-widest text-center break-words leading-tight">
+              GINGA FESTIVAL &apos;26
             </h1>
 
-            {/* 入場ボタン */}
             <button
               onClick={handleEnter}
               disabled={!isReady}
@@ -80,8 +73,7 @@ export default function EntranceGate({ player, onEnter }: EntranceGateProps) {
               {isReady ? "TAP TO ENTER" : "LOADING..."}
             </button>
 
-            {/* 注意書き */}
-            <p className="text-sm text-gray-500 tracking-wider">
+            <p className="text-sm text-gray-500 tracking-wider text-center">
               ※このサイトは音がなります
             </p>
           </motion.div>
