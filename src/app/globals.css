@@ -51,8 +51,18 @@
   animation: brutal-slide-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
-/* アメコミ風・ストリート風のドットパターン */
+/* アメコミ風・ストリート風のドットパターン無限スクロール */
+@keyframes scroll-dots {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -40px 40px;
+  }
+}
+
 .bg-dot-pattern {
   background-image: radial-gradient(#1e3a8a 2px, transparent 2px);
   background-size: 20px 20px;
+  animation: scroll-dots 3s linear infinite;
 }

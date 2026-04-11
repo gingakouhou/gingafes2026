@@ -5,6 +5,7 @@ import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 import PopInLogo from "@/components/PopInLogo";
+import Splash from "@/components/Splash";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
@@ -19,7 +20,9 @@ export default async function Home() {
   const eventList = eventsData.contents;
 
   return (
-    <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
+    <>
+      <Splash />
+      <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
       {/* 背景パターン: ドット */}
       <div className="fixed inset-0 z-0 bg-dot-pattern opacity-10 pointer-events-none mix-blend-multiply" />
 
@@ -178,5 +181,6 @@ export default async function Home() {
 
       </main>
     </div>
+    </>
   );
 }
