@@ -3,7 +3,13 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-export default function EntranceGate() {
+interface EntranceGateProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  player: any | null;
+  onEnter: () => void;
+}
+
+export default function EntranceGate({ player, onEnter }: EntranceGateProps) {
   const [isEntered, setIsEntered] = useState(false);
 
   useEffect(() => {
@@ -17,11 +23,14 @@ export default function EntranceGate() {
   }, [isEntered]);
 
   const handleEnter = () => {
+    // ユーザーインタラクションのコンテキスト内で直接 playVideo() を呼ぶ
+    // → ブラウザの自動再生ブロックを回避
+    onEnter();
     setIsEntered(true);
     document.body.style.overflow = "";
-    // YouTubeEmbed に再生開始を通知
-    window.dispatchEvent(new CustomEvent("site-entered"));
   };
+
+  const isReady = player !== null;
 
   return (
     <AnimatePresence>
@@ -61,14 +70,19 @@ export default function EntranceGate() {
             {/* 入場ボタン */}
             <button
               onClick={handleEnter}
-              className="animate-pulse border-4 border-white px-10 py-4 text-xl sm:text-2xl font-black text-white tracking-widest uppercase hover:bg-white hover:text-black transition-colors focus:outline-none"
+              disabled={!isReady}
+              className={`border-4 border-white px-10 py-4 text-xl sm:text-2xl font-black tracking-widest uppercase transition-colors focus:outline-none ${
+                isReady
+                  ? "text-white hover:bg-white hover:text-black animate-pulse cursor-pointer"
+                  : "text-gray-600 border-gray-600 cursor-not-allowed"
+              }`}
             >
-              TAP TO ENTER
+              {isReady ? "TAP TO ENTER" : "LOADING..."}
             </button>
 
             {/* 注意書き */}
             <p className="text-xs text-gray-500 tracking-wider">
-              ※音が出ます
+              {isReady ? "※音が出ます" : "準備中..."}
             </p>
           </motion.div>
         </motion.div>
