@@ -17,6 +17,12 @@ export default async function Home() {
   const eventsData = await getEventsList(3);
   const eventList = eventsData.contents;
 
+  const bars = Array.from({ length: 14 }, (_, i) => ({
+    id: i,
+    delay: `${i * 0.07}s`,
+    duration: `${0.55 + (i % 5) * 0.12}s`,
+  }));
+
   return (
     <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
       {/* 背景パターン: ドット */}
@@ -44,6 +50,31 @@ export default async function Home() {
             <p className="mt-8 text-lg font-bold text-slate-700 bg-white px-6 py-2 border-2 border-black inline-block -rotate-1 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
               テーマソング「キミシダイ列車」
             </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.42}>
+            <div className="mt-8 w-full max-w-2xl mx-auto border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] bg-black -rotate-1 hover:rotate-0 transition-transform overflow-hidden relative">
+              <img
+                src="https://img.youtube.com/vi/P6aZ4A950z0/maxresdefault.jpg"
+                alt="テーマソング NOW PLAYING サムネイル"
+                className="w-full h-auto object-cover"
+              />
+              <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center gap-4">
+                <div className="text-white font-black tracking-[0.2em] uppercase text-lg sm:text-xl md:text-2xl drop-shadow-[0_2px_0_rgba(0,0,0,1)]">
+                  NOW PLAYING...
+                </div>
+                <div className="flex items-end justify-center gap-1 h-10 sm:h-12">
+                  {bars.map((b) => (
+                    <span
+                      key={b.id}
+                      className="now-playing-bar w-2 sm:w-2.5 h-full bg-white border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                      style={{ animationDelay: b.delay, animationDuration: b.duration }}
+                      aria-hidden="true"
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.55}>

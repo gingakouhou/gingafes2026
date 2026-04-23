@@ -28,9 +28,10 @@ export default function ClientLayout({ children }: ClientLayoutProps) {
   return (
     <>
       {/* YouTubeプレイヤー: 常に存在（非表示・最背面） */}
-      <div className="fixed bottom-0 right-0 w-0 h-0 overflow-hidden opacity-0 pointer-events-none z-[-1]">
-        <YouTubeEmbed onPlayerReady={handlePlayerReady} />
-      </div>
+      <YouTubeEmbed
+        onPlayerReady={handlePlayerReady}
+        className="fixed inset-0 w-full h-full opacity-0 pointer-events-none -z-50"
+      />
 
       {/* 入場ゲート: 未入場時のみ最前面に表示 */}
       {!isEntered && (
