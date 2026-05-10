@@ -43,11 +43,11 @@ export default function NowPlayingHero() {
   }, []);
 
   return (
-    <div className="w-full max-w-2xl mx-auto aspect-video relative overflow-hidden border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] rounded-lg">
+    <div className="w-[90vw] md:w-[640px] h-[50vw] md:h-[360px] relative overflow-hidden border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] rounded-lg mx-auto flex-shrink-0">
       <img
         src="https://img.youtube.com/vi/jK2aIUmmdP4/maxresdefault.jpg"
-        alt="テーマソング NOW PLAYING サムネイル"
-        className="object-cover w-full h-full absolute inset-0"
+        alt="NOW PLAYING"
+        className="w-full h-full object-cover absolute inset-0 z-0"
         loading="lazy"
       />
 
