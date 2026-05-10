@@ -56,97 +56,110 @@ export default function EntranceGate({ onComplete }: EntranceGateProps) {
               scale: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
               opacity: { duration: 0.2 },
             }}
-            className="fixed inset-0 overflow-hidden"
+            className="fixed inset-0 overflow-hidden bg-black"
           >
-            {/* 背景: 放射状グラデーション（ステージ奥行き表現） */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-gray-950 to-black" />
+            {/* 漆黒の背景 - ベタ塗りのみ */}
+            <div className="absolute inset-0 bg-black" />
 
-            {/* スポットライト効果 */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_40%,_rgba(59,130,246,0.15)_0%,_transparent_50%)]" />
-
-            {/* 上半分ゲート */}
+            {/* 上半分ゲート - ソリッドな漆黒 */}
             <motion.div
               initial={{ y: 0 }}
               animate={{ y: 0 }}
               exit={{ y: "-100%" }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute top-0 left-0 w-full h-1/2 bg-black/40 backdrop-blur-sm"
-              style={{
-                background: "linear-gradient(to bottom, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%)",
-              }}
+              className="absolute top-0 left-0 w-full h-1/2 bg-black"
             />
 
-            {/* 下半分ゲート */}
+            {/* 下半分ゲート - ソリッドな漆黒 */}
             <motion.div
               initial={{ y: 0 }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute bottom-0 left-0 w-full h-1/2 bg-black/40 backdrop-blur-sm"
-              style={{
-                background: "linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 100%)",
-              }}
+              className="absolute bottom-0 left-0 w-full h-1/2 bg-black"
             />
 
             {/* 中央コンテンツ */}
             <div className="absolute inset-0 flex flex-col items-center justify-center z-20">
-              {/* ロゴテキスト: グリッチエフェクト */}
-              <motion.h1
+              {/* ロゴテキスト: グリッチ + ネオブルータリズム装飾 */}
+              <motion.div
                 initial={{ opacity: 0 }}
                 animate={glitchFlicker}
-                className="text-4xl md:text-6xl font-black text-white tracking-widest text-center leading-normal drop-shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+                className="relative"
               >
-                GINGA FESTIVAL &apos;26
-              </motion.h1>
+                {/* ズレた赤い影（左下） */}
+                <span
+                  className="absolute top-1 left-1 text-5xl md:text-7xl font-black tracking-wider text-center leading-none text-red-600 italic -skew-x-6 select-none font-[var(--font-oswald)]"
+                  aria-hidden="true"
+                >
+                  GINGA FESTIVAL &apos;26
+                </span>
+                {/* ズレた青い影（右下） */}
+                <span
+                  className="absolute -top-1 -left-1 text-5xl md:text-7xl font-black tracking-wider text-center leading-none text-blue-600 italic -skew-x-6 select-none font-[var(--font-oswald)]"
+                  aria-hidden="true"
+                >
+                  GINGA FESTIVAL &apos;26
+                </span>
+                {/* メインテキスト（白） */}
+                <h1 className="relative text-5xl md:text-7xl font-black tracking-wider text-center leading-none text-white italic -skew-x-6 font-[var(--font-oswald)]">
+                  GINGA FESTIVAL &apos;26
+                </h1>
+              </motion.div>
 
-              {/* プログレスバー演出 */}
-              <div className="mt-12 w-[280px] md:w-[400px]">
-                {/* サイバーテキスト */}
+              {/* プログレスバー演出 - ソリッドなネオブルータリズム */}
+              <div className="mt-14 w-[300px] md:w-[420px]">
+                {/* LOADING テキスト - 極太フォント + 影 */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.3, duration: 0.5 }}
-                  className="flex justify-between items-center mb-2"
+                  className="flex justify-between items-center mb-3"
                 >
-                  <span className="text-xs font-mono font-bold text-blue-400 tracking-[0.2em] uppercase">
-                    SYSTEM STARTING
+                  <span className="text-sm font-black text-white tracking-[0.3em] uppercase italic font-[var(--font-oswald)]"
+                    style={{ textShadow: "3px 3px 0px #dc2626" }}
+                  >
+                    LOADING
                   </span>
                   <motion.span
-                    animate={{ opacity: [1, 0.3, 1] }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                    className="text-xs font-mono font-bold text-blue-400"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                    className="text-xl font-black text-white font-[var(--font-oswald)]"
+                    style={{ textShadow: "2px 2px 0px #2563eb" }}
                   >
-                    ...
+                    ▼
                   </motion.span>
                 </motion.div>
 
-                {/* プログレスバー外枠 */}
-                <div className="border-2 border-white p-1">
-                  {/* プログレスバー本体 */}
-                  <div className="h-3 bg-black/50 overflow-hidden">
+                {/* プログレスバー外枠 - 太い白枠 */}
+                <div className="border-4 border-white p-2 bg-black">
+                  {/* プログレスバー本体 - ソリッドな赤からオレンジ */}
+                  <div className="h-4 bg-black overflow-hidden">
                     <motion.div
-                      initial={{ width: "0%" }}
+                      initial={{ width: "0%", x: 0 }}
                       animate={{ width: "100%" }}
                       transition={{
                         duration: 1.5,
                         ease: [0.22, 1, 0.36, 1],
                       }}
-                      className="h-full bg-gradient-to-r from-blue-500 via-blue-400 to-white shadow-[0_0_20px_rgba(59,130,246,0.8)]"
+                      className="h-full bg-red-600"
+                      style={{
+                        boxShadow: "4px 0 0 #ea580c, 8px 0 0 #f97316",
+                      }}
                     />
                   </div>
                 </div>
 
-                {/* パーセンテージ表示 */}
+                {/* パーセンテージ表示 - 極太フォント */}
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.3 }}
-                  className="mt-2 text-right"
+                  className="mt-3 text-right"
                 >
                   <motion.span
-                    className="text-sm font-mono font-bold text-white"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
+                    className="text-lg font-black text-white italic font-[var(--font-oswald)]"
+                    style={{ textShadow: "2px 2px 0px #dc2626" }}
                   >
                     <motion.span
                       animate={{ opacity: [0, 1, 0, 1, 0, 1] }}
@@ -159,10 +172,10 @@ export default function EntranceGate({ onComplete }: EntranceGateProps) {
               </div>
             </div>
 
-            {/* グリッドライン演出 */}
-            <div className="absolute inset-0 opacity-20 pointer-events-none">
-              <div className="absolute top-1/2 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent" />
-              <div className="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-transparent via-blue-500/50 to-transparent" />
+            {/* クロスライン装飾（単色） */}
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute top-1/2 left-0 w-full h-1 bg-white" />
+              <div className="absolute top-0 left-1/2 w-1 h-full bg-white" />
             </div>
           </motion.div>
         )}

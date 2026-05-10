@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Oswald } from "next/font/google";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -10,6 +10,12 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 import Header from "@/components/Header";
@@ -29,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="ja" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} flex min-h-screen flex-col bg-[#f8f9fa] text-slate-900 antialiased selection:bg-blue-600 selection:text-white`}
+        className={`${geistSans.variable} ${geistMono.variable} ${oswald.variable} flex min-h-screen flex-col bg-[#f8f9fa] text-slate-900 antialiased selection:bg-blue-600 selection:text-white`}
       >
         <ClientLayout>
           <Header />
