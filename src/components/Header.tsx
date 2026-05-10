@@ -41,8 +41,8 @@ export default function Header() {
             className="flex items-center group active:scale-95 transition-transform"
           >
             <div className="bg-black text-white px-4 py-1 border-4 border-black group-hover:bg-white group-hover:text-black transition-colors -skew-x-12">
-              <span className="text-2xl font-black tracking-tighter uppercase leading-none">
-                SEISHUN <span className="text-orange-600 tracking-normal text-xl ml-1 group-hover:text-orange-600">'26</span>
+              <span className="text-2xl font-black tracking-tighter uppercase leading-none font-[var(--font-oswald)]">
+                GINGAFES <span className="text-orange-600 tracking-normal text-xl ml-1 group-hover:text-orange-600">'26</span>
               </span>
             </div>
           </Link>

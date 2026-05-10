@@ -1,9 +1,9 @@
-import { ChevronDown, Calendar, MapPin, Image as ImageIcon, ArrowRight, Zap } from "lucide-react";
+import { Calendar, MapPin, Image as ImageIcon, ArrowRight, Zap } from "lucide-react";
 import { getNewsList, getEventsList } from "@/lib/microcms";
 import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
-import PopInLogo from "@/components/PopInLogo";
+import HeroSection from "@/components/HeroSection";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
@@ -29,47 +29,7 @@ export default async function Home() {
       <main className="relative z-10 w-full max-w-6xl px-4 pt-32 pb-8 mx-auto sm:px-6 lg:px-8">
 
         {/* --- HERO SECTION --- */}
-        <section className="flex flex-col items-center justify-center min-h-[80vh] text-center mb-24 relative px-4">
-          <PopInLogo />
-
-          <ScrollReveal delay={0.15}>
-            <div className="mt-8 bg-blue-600 text-white p-8 md:px-8 md:py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6 transform rotate-2">
-              <p className="text-xl md:text-3xl font-black tracking-widest uppercase">
-                Matsumoto Arigasaki High School Festival 2026
-              </p>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.3}>
-            <p className="mt-8 text-lg font-bold text-slate-700 bg-white px-6 py-2 border-2 border-black inline-block -rotate-1 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
-              テーマソング「キミシダイ列車」
-            </p>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.42}>
-            <div className="w-[90vw] md:w-[640px] h-[50vw] md:h-[360px] border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] rounded-lg overflow-hidden mx-auto">
-              <iframe
-                src="https://www.youtube.com/embed/P6aZ4A950z0"
-                title="GINGA FESTIVAL '26"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.55}>
-            <a
-              href="#news"
-              className="mt-16 group flex flex-col items-center text-blue-800 hover:text-orange-600 transition-colors"
-            >
-              <span className="text-sm font-black tracking-widest uppercase mb-2">Scroll Down</span>
-              <div className="p-3 bg-white border-2 border-current rounded-full shadow-[4px_4px_0px_rgba(0,0,0,1)] group-hover:translate-y-1 group-hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all">
-                <ChevronDown className="h-6 w-6 animate-bounce" />
-              </div>
-            </a>
-          </ScrollReveal>
-        </section>
+        <HeroSection />
 
         {/* --- NEWS SECTION --- */}
         <section id="news" className="py-20">
