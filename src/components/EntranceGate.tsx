@@ -1,60 +1,63 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
 
 interface EntranceGateProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  player: any | null;
-  onEnter: () => void;
+  onComplete: () => void;
 }
 
-export default function EntranceGate({ player, onEnter }: EntranceGateProps) {
+export default function EntranceGate({ onComplete }: EntranceGateProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
   useEffect(() => {
     document.body.style.overflow = "hidden";
     window.scrollTo(0, 0);
+
+    const timer = setTimeout(() => {
+      setIsOpen(true);
+    }, 1500);
+
     return () => {
       document.body.style.overflow = "";
+      clearTimeout(timer);
     };
   }, []);
 
-  const isReady = player !== null;
-
-  const handleEnter = () => {
-    onEnter();
+  const handleAnimationComplete = () => {
     document.body.style.overflow = "";
+    onComplete();
   };
 
   return (
-    <div className="fixed inset-0 z-[100]">
-      {/* 背景: 上半分 */}
-      <div className="absolute top-0 left-0 w-full h-1/2 bg-black" />
+    <div className="fixed inset-0 z-[100] pointer-events-none">
+      <AnimatePresence onExitComplete={handleAnimationComplete}>
+        {!isOpen && (
+          <>
+            {/* 上半分 */}
+            <motion.div
+              initial={{ y: 0 }}
+              animate={{ y: 0 }}
+              exit={{ y: "-100%" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute top-0 left-0 w-full h-1/2 bg-black flex items-end justify-center pb-8"
+            >
+              <h1 className="text-4xl md:text-6xl font-black text-white tracking-widest text-center leading-normal">
+                GINGA FESTIVAL &apos;26
+              </h1>
+            </motion.div>
 
-      {/* 背景: 下半分 */}
-      <div className="absolute bottom-0 left-0 w-full h-1/2 bg-black" />
-
-      {/* コンテンツ: Flexbox配置 */}
-      <div className="relative z-10 flex flex-col items-center justify-center gap-12 px-8 min-h-[100dvh]">
-        <h1 className="text-4xl md:text-6xl font-black text-white tracking-widest text-center leading-normal">
-          GINGA FESTIVAL &apos;26
-        </h1>
-
-        <button
-          onClick={handleEnter}
-          disabled={!isReady}
-          className={`border-4 px-10 py-4 text-xl sm:text-2xl font-black tracking-widest uppercase transition-colors focus:outline-none ${
-            isReady
-              ? "border-white text-white hover:bg-white hover:text-black animate-pulse cursor-pointer"
-              : "border-gray-600 text-gray-600 cursor-not-allowed"
-          }`}
-        >
-          {isReady ? "TAP TO ENTER" : "LOADING..."}
-        </button>
-
-        <p className="text-sm text-gray-500 tracking-wider text-center">
-          ※このサイトは音がなります
-        </p>
-      </div>
+            {/* 下半分 */}
+            <motion.div
+              initial={{ y: 0 }}
+              animate={{ y: 0 }}
+              exit={{ y: "100%" }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute bottom-0 left-0 w-full h-1/2 bg-black"
+            />
+          </>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

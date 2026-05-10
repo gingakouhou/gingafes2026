@@ -4,7 +4,6 @@ import Link from "next/link";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 import PopInLogo from "@/components/PopInLogo";
-import NowPlayingHero from "@/components/NowPlayingHero";
 
 // ISR: 60秒ごとにキャッシュを再検証し、microCMSの更新を反映
 export const revalidate = 60;
@@ -48,7 +47,15 @@ export default async function Home() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.42}>
-            <NowPlayingHero />
+            <div className="w-[90vw] md:w-[640px] h-[50vw] md:h-[360px] border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] rounded-lg overflow-hidden mx-auto">
+              <iframe
+                src="https://www.youtube.com/embed/P6aZ4A950z0"
+                title="GINGA FESTIVAL '26"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.55}>
