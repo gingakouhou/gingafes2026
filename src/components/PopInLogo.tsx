@@ -20,7 +20,7 @@ export default function PopInLogo() {
       <div className="relative w-full max-w-[800px] aspect-[16/10] drop-shadow-[2px_2px_0px_rgba(0,0,0,1)] md:drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]">
         <Image 
           src="/logo.png" 
-          alt="星瞬 -永炎の思い出を駆け抜けろ-" 
+          alt="GINGAFES '26 -永炎の思い出を駆け抜けろ-" 
           fill
           className="object-contain"
           priority

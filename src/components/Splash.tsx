@@ -11,11 +11,11 @@ export default function Splash() {
     document.body.style.overflow = "hidden";
     window.scrollTo(0, 0);
 
-    // 1.5秒（タメ）後に非表示ステートへ移行
+    // 0.6秒（タメ）後に非表示ステートへ移行
     const timer = setTimeout(() => {
       setShow(false);
       document.body.style.overflow = "";
-    }, 1500);
+    }, 600);
 
     return () => {
       clearTimeout(timer);
@@ -46,15 +46,15 @@ export default function Splash() {
             transition={{ duration: 0.3, ease: "circIn" }}
           />
 
-          {/* テキスト（GINGA FESTIVAL '26） */}
+          {/* テキスト（GINGAFES '26） */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center z-10"
             initial={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 1.1 }}
             transition={{ duration: 0.2, ease: "circIn" }}
           >
-            <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-widest text-center whitespace-nowrap px-4">
-              GINGA FESTIVAL '26
+            <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-widest text-center whitespace-nowrap">
+              GINGAFES '26
             </h1>
           </motion.div>
         </motion.div>
