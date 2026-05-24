@@ -16,15 +16,15 @@ export default function HeroSection() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.15 }}
         transition={{ duration: 1.5, delay: 0.3 }}
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0 overflow-hidden"
+        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0 overflow-hidden -rotate-6 -skew-y-6 scale-125 origin-center"
       >
         {/* WebkitTextStrokeを使った透明＋枠線のスタイル */}
         {Array.from({ length: 6 }).map((_, i) => (
           <motion.p
             key={i}
             animate={{ x: i % 2 === 0 ? [0, -100] : [-100, 0] }}
-            transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-            className="text-[15vw] md:text-[180px] font-black text-transparent uppercase leading-none font-[var(--font-oswald)] whitespace-nowrap"
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+            className="text-[25vw] md:text-[250px] font-black text-transparent uppercase leading-none font-[var(--font-oswald)] whitespace-nowrap"
             style={{ WebkitTextStroke: "2px #1e293b" }}
           >
             GINGAFES 2026 GINGAFES 2026 GINGAFES 2026
@@ -54,13 +54,13 @@ export default function HeroSection() {
       </motion.div>
 
       {/* === 下部コンテンツ（整然と縦並び） === */}
-      <div className="relative z-20 flex flex-col items-center gap-8 w-full max-w-2xl">
+      <div className="relative z-20 flex flex-col items-center gap-8 w-full max-w-2xl mt-4">
         {/* サブタイトルボックス */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-blue-600 px-8 py-3 border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] text-white -skew-x-6"
+          className="bg-blue-600 px-8 py-3 border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] text-white -skew-x-6 rotate-2 transform-gpu"
         >
           <p className="text-base md:text-2xl font-black tracking-widest uppercase font-[var(--font-oswald)] skew-x-6">
             MATSUMOTO ARIGASAKI HIGH SCHOOL FESTIVAL
@@ -73,11 +73,10 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           onClick={() => setIsModalOpen(true)}
-          className="group flex items-center justify-center gap-3 bg-white hover:bg-orange-600 hover:text-white text-slate-900 px-8 py-4 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-1 transition-all active:shadow-none active:translate-y-2 w-full max-w-md"
+          className="group flex items-center justify-center gap-3 bg-white hover:bg-orange-600 hover:text-white text-slate-900 px-8 py-4 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-1 transition-all active:shadow-none active:translate-y-2 w-full max-w-md -rotate-3 transform-gpu mt-2"
         >
-          <Play className="w-6 h-6 md:w-8 md:h-8 fill-current stroke-current" />
           <span className="text-lg md:text-xl font-black tracking-widest uppercase font-[var(--font-oswald)] mt-1">
-            THEME SONG : キミシダイ列車
+            ▶ テーマソング「キミシダイ列車」
           </span>
         </motion.button>
 
