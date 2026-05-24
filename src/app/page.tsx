@@ -19,10 +19,10 @@ export default async function Home() {
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
-      {/* ノイズテクスチャ（ポスターのようなザラッとした質感） */}
+      {/* 紙のテクスチャ（ポスターのような手作り感） */}
       <div 
-        className="fixed inset-0 z-50 pointer-events-none opacity-[0.06] mix-blend-overlay"
-        style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
+        className="fixed inset-0 z-50 pointer-events-none opacity-50 mix-blend-multiply"
+        style={{ backgroundImage: "url('/images/paper.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
       />
 
       {/* 背景パターン: ドット */}

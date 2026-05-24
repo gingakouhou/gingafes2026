@@ -11,21 +11,21 @@ export default function HeroSection() {
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[90vh] text-center mb-16 pt-20 pb-8 px-4 overflow-hidden">
-      {/* === 背景の巨大タイポグラフィ === */}
+      {/* === 背景の巨大タイポグラフィ（ポップなスタンプ・マスキングテープ風） === */}
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.15 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 1.5, delay: 0.3 }}
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0 overflow-hidden -rotate-6 -skew-y-6 scale-125 origin-center"
+        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0 overflow-hidden -rotate-2 -skew-y-2 scale-110 origin-center"
       >
-        {/* WebkitTextStrokeを使った透明＋枠線のスタイル */}
         {Array.from({ length: 6 }).map((_, i) => (
           <motion.p
             key={i}
             animate={{ x: i % 2 === 0 ? [0, -100] : [-100, 0] }}
-            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-            className="text-[25vw] md:text-[250px] font-black text-transparent uppercase leading-none font-[var(--font-oswald)] whitespace-nowrap"
-            style={{ WebkitTextStroke: "2px #1e293b" }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+            className={`text-[20vw] md:text-[200px] font-black uppercase leading-none font-[var(--font-oswald)] whitespace-nowrap opacity-20 mix-blend-multiply ${
+              i % 3 === 0 ? "text-red-500" : i % 3 === 1 ? "text-blue-500" : "text-orange-500"
+            }`}
           >
             GINGAFES 2026 GINGAFES 2026 GINGAFES 2026
           </motion.p>
@@ -45,10 +45,10 @@ export default function HeroSection() {
         className="relative z-20 w-full max-w-[500px] md:max-w-[700px] aspect-[16/10] mb-8"
       >
         <Image
-          src="/logo.png"
+          src="/images/logo.png"
           alt="GINGAFES '26 -永炎の思い出を駆け抜けろ-"
           fill
-          className="object-contain drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)]"
+          className="object-contain drop-shadow-[4px_4px_0px_rgba(0,0,0,1)]"
           priority
         />
       </motion.div>
@@ -60,9 +60,9 @@ export default function HeroSection() {
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="bg-blue-600 px-8 py-3 border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] text-white -skew-x-6 rotate-2 transform-gpu"
+          className="bg-blue-600 px-8 py-3 border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] text-white -rotate-1 transform-gpu"
         >
-          <p className="text-base md:text-2xl font-black tracking-widest uppercase font-[var(--font-oswald)] skew-x-6">
+          <p className="text-base md:text-2xl font-black tracking-widest uppercase font-[var(--font-oswald)]">
             MATSUMOTO ARIGASAKI HIGH SCHOOL FESTIVAL
           </p>
         </motion.div>
@@ -73,7 +73,7 @@ export default function HeroSection() {
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.7, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           onClick={() => setIsModalOpen(true)}
-          className="group flex items-center justify-center gap-3 bg-white hover:bg-orange-600 hover:text-white text-slate-900 px-8 py-4 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-1 transition-all active:shadow-none active:translate-y-2 w-full max-w-md -rotate-3 transform-gpu mt-2"
+          className="group flex items-center justify-center gap-3 bg-white hover:bg-orange-600 hover:text-white text-slate-900 px-8 py-4 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:translate-y-1 transition-all active:shadow-none active:translate-y-2 w-full max-w-md rotate-1 transform-gpu mt-2"
         >
           <span className="text-lg md:text-xl font-black tracking-widest uppercase font-[var(--font-oswald)] mt-1">
             ▶ テーマソング「キミシダイ列車」
