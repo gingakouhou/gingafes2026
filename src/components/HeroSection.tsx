@@ -36,13 +36,13 @@ export default function HeroSection() {
           damping: 15,
           delay: 0.2,
         }}
-        className="relative z-20 w-[95vw] md:w-full max-w-[95vw] md:max-w-[1200px] aspect-[16/10] mb-8"
+        className="relative z-20 w-[90vw] md:w-[700px] aspect-video flex justify-center items-center mb-8 mx-auto"
       >
         <Image
           src="/logo.png"
           alt="GINGAFES '26 -永炎の思い出を駆け抜けろ-"
           fill
-          className="object-contain drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)]"
+          className="object-contain w-full h-full drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)] scale-125 md:scale-110"
           priority
         />
       </motion.div>
