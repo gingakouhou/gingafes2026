@@ -11,6 +11,21 @@ export default function HeroSection() {
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[90vh] text-center mb-16 pt-20 pb-8 px-4 overflow-hidden">
+      {/* === 背景の巨大タイポグラフィ === */}
+      <div className="absolute inset-0 overflow-hidden -z-10 flex flex-col justify-center">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <motion.p
+            key={i}
+            animate={{ x: i % 2 === 0 ? [0, -100] : [-100, 0] }}
+            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+            className="text-[150px] leading-none font-black text-transparent whitespace-nowrap opacity-20 -rotate-6 font-[var(--font-oswald)]"
+            style={{ WebkitTextStroke: "2px #cbd5e1" }}
+          >
+            GINGAFES 2026 GINGAFES 2026 GINGAFES 2026 GINGAFES 2026
+          </motion.p>
+        ))}
+      </div>
+
       {/* === 中央：公式ロゴ === */}
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
@@ -21,7 +36,7 @@ export default function HeroSection() {
           damping: 15,
           delay: 0.2,
         }}
-        className="relative z-20 w-full max-w-[900px] md:max-w-[1200px] aspect-[16/10] mb-8"
+        className="relative z-20 w-[95vw] md:w-full max-w-[95vw] md:max-w-[1200px] aspect-[16/10] mb-8"
       >
         <Image
           src="/logo.png"
