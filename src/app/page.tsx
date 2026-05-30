@@ -1,6 +1,7 @@
 import { Calendar, MapPin, Image as ImageIcon, ArrowRight, Zap } from "lucide-react";
 import { getNewsList, getEventsList } from "@/lib/microcms";
 import Link from "next/link";
+import Image from "next/image";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 import HeroSection from "@/components/HeroSection";
@@ -97,9 +98,21 @@ export default async function Home() {
                     className="group flex flex-col border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
                     hoverColor="rgba(234,88,12,1)"
                   >
-                    {/* プレースホルダー画像部分 */}
-                    <div className="mb-6 flex aspect-video w-full items-center justify-center border-4 border-black bg-blue-100 text-blue-600 transition-colors group-hover:bg-orange-100 group-hover:text-orange-600">
-                      <ImageIcon className="h-12 w-12 opacity-80" />
+                    {/* 画像またはプレースホルダー部分 */}
+                    <div className="mb-6 relative flex h-48 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-orange-600 transition-colors duration-300">
+                      {event.image ? (
+                        <Image
+                          src={event.image.url}
+                          width={event.image.width}
+                          height={event.image.height}
+                          alt={event.title}
+                          className="w-full h-full object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#e2e8f0_10px,#e2e8f0_20px)] w-full h-full flex items-center justify-center transition-colors duration-300 group-hover:bg-orange-50">
+                          <ImageIcon className="h-12 w-12 opacity-50" />
+                        </div>
+                      )}
                     </div>
 
                     <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">

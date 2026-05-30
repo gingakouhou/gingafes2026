@@ -37,12 +37,12 @@ export async function getNewsList(limit: number = 3): Promise<MicroCMSListRespon
   }
 }
 
-// 企画の型定義
 export type Event = {
   title: string;
   category?: string;
   location?: string;
   description?: string;
+  image?: { url: string; width: number; height: number; };
 } & MicroCMSListContent;
 
 // 企画一覧を取得する関数
