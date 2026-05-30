@@ -8,7 +8,7 @@ const navLinks = [
   { name: "トップ", href: "/" },
   { name: "お知らせ", href: "/#news" },
   { name: "企画一覧", href: "/events" },
-  { name: "タイムテーブル", href: "/schedule" },
+  ...(process.env.NODE_ENV !== "production" ? [{ name: "タイムテーブル", href: "/schedule" }] : []),
   { name: "Q&A", href: "/faq" },
   { name: "アクセス", href: "/access" },
 ];

@@ -3,6 +3,27 @@ import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 
 export default function SchedulePage() {
+  if (process.env.NODE_ENV === "production") {
+    return (
+      <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 flex items-center justify-center p-4">
+        {/* 背景パターン: ドット */}
+        <div className="fixed inset-0 z-0 bg-dot-pattern opacity-[0.05] pointer-events-none mix-blend-multiply" />
+        
+        <div className="relative z-10 bg-white border-4 border-black p-8 md:p-12 shadow-[8px_8px_0px_rgba(0,0,0,1)] text-center max-w-2xl transform -rotate-1">
+          <div className="inline-block bg-blue-600 text-white px-6 py-2 border-4 border-black shadow-[4px_4px_0px_rgba(0,0,0,1)] -skew-x-6 mb-6">
+            <h1 className="text-3xl font-black tracking-widest uppercase">
+              TIME TABLE
+            </h1>
+          </div>
+          <p className="text-xl md:text-2xl font-bold leading-relaxed text-black">
+            タイムテーブルは現在準備中です。<br className="hidden md:block"/>
+            公開までもうしばらくお待ちください。
+          </p>
+        </div>
+      </div>
+    );
+  }
+
   const scheduleData = [
     { time: "09:00", title: "開会式", location: "体育館", type: "event" },
     { time: "10:00", title: "クラス企画・模擬店 オープン", location: "各教室・中庭", type: "class" },
