@@ -19,14 +19,14 @@ export default async function Home() {
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
-      {/* 紙のテクスチャ（ポスターのような手作り感） */}
+      {/* 紙のテクスチャ（手作りポスターの質感） */}
       <div 
-        className="fixed inset-0 z-50 pointer-events-none opacity-50 mix-blend-multiply"
-        style={{ backgroundImage: "url('/images/paper.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+        className="fixed inset-0 z-50 pointer-events-none opacity-40 mix-blend-multiply"
+        style={{ backgroundImage: "url('/paper-texture.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
       />
 
       {/* 背景パターン: ドット */}
-      <div className="fixed inset-0 z-0 bg-dot-pattern opacity-10 pointer-events-none mix-blend-multiply" />
+      <div className="fixed inset-0 z-0 bg-dot-pattern opacity-[0.05] pointer-events-none mix-blend-multiply" />
 
       {/* スラッシュ状の背景装飾 */}
       <div className="fixed top-0 right-0 w-1/2 h-full bg-blue-600/5 -skew-x-12 translate-x-32 pointer-events-none z-0" />
