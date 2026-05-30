@@ -11,28 +11,6 @@ export default function HeroSection() {
 
   return (
     <section className="relative flex flex-col items-center justify-center min-h-[90vh] text-center mb-16 pt-20 pb-8 px-4 overflow-hidden">
-      {/* === 背景の巨大タイポグラフィ（スタンプ・マスキングテープ風） === */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.5, delay: 0.3 }}
-        className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0 overflow-hidden -rotate-2 scale-110 origin-center"
-      >
-        {/* 透明+枠線ではなく、スタンプのような色付き+半透明に変更 */}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <motion.p
-            key={i}
-            animate={{ x: i % 2 === 0 ? [0, -100] : [-100, 0] }}
-            transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-            className={`text-[20vw] md:text-[150px] font-black uppercase leading-none font-[var(--font-oswald)] whitespace-nowrap mix-blend-multiply ${
-              i % 2 === 0 ? "text-blue-600/10" : "text-orange-600/10"
-            }`}
-          >
-            GINGAFES 2026 GINGAFES 2026 GINGAFES 2026 GINGAFES 2026
-          </motion.p>
-        ))}
-      </motion.div>
-
       {/* === 中央：公式ロゴ === */}
       <motion.div
         initial={{ scale: 0.5, opacity: 0 }}
@@ -43,7 +21,7 @@ export default function HeroSection() {
           damping: 15,
           delay: 0.2,
         }}
-        className="relative z-20 w-full max-w-[500px] md:max-w-[700px] aspect-[16/10] mb-8"
+        className="relative z-20 w-full max-w-[700px] md:max-w-[900px] aspect-[16/10] mb-8"
       >
         <Image
           src="/logo.png"

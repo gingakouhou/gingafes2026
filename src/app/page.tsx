@@ -19,9 +19,9 @@ export default async function Home() {
 
   return (
     <div className="relative min-h-[calc(100vh-4rem)] bg-[#f8f9fa] text-slate-900 overflow-x-hidden selection:bg-blue-600 selection:text-white">
-      {/* 紙のテクスチャ（手作りポスターの質感） */}
+      {/* 紙のテクスチャ（背景のみに適用して見やすさを確保） */}
       <div 
-        className="fixed inset-0 z-50 pointer-events-none opacity-40 mix-blend-multiply"
+        className="fixed inset-0 z-0 pointer-events-none opacity-[0.4] mix-blend-multiply"
         style={{ backgroundImage: "url('/paper-texture.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
       />
 
