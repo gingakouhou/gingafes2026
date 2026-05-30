@@ -29,7 +29,7 @@ function renderEventCard(event: Event) {
               width={event.image.width}
               height={event.image.height}
               alt={event.title}
-              className="w-full h-full object-cover grayscale transition-all duration-500 group-hover:scale-105 group-hover:grayscale-0"
+              className="w-full h-full object-cover"
             />
           ) : (
             <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#e2e8f0_10px,#e2e8f0_20px)] w-full h-full flex items-center justify-center transition-colors duration-300 group-hover:bg-blue-50">
