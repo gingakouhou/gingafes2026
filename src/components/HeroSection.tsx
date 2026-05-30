@@ -21,7 +21,7 @@ export default function HeroSection() {
           damping: 15,
           delay: 0.2,
         }}
-        className="relative z-20 w-full max-w-[700px] md:max-w-[900px] aspect-[16/10] mb-8"
+        className="relative z-20 w-full max-w-[900px] md:max-w-[1200px] aspect-[16/10] mb-8"
       >
         <Image
           src="/logo.png"
