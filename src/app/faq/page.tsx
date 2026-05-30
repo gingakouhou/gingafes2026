@@ -5,32 +5,71 @@ import { ChevronDown, MessageCircleQuestion, HelpCircle } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 
-const faqs = [
+const faqData = [
   {
-    q: "自転車での来校は可能ですか？",
-    a: "駐輪場に限りがあるため、なるべく公共交通機関でのご来校をお願いいたします。",
+    category: "アクセス・入場について",
+    items: [
+      {
+        q: "一般公開日は誰でも入場できますか？チケットや事前予約は必要ですか？",
+        a: "一般公開日はどなたでもご自由に入場いただけます。チケットや事前の申し込みは不要です。ぜひお気軽にお越しください。",
+      },
+      {
+        q: "車で行きたいのですが、駐車場はありますか？",
+        a: "学校内に一般来場者向けの駐車場はございません。近隣の商業施設への無断駐車は絶対におやめください。必ず公共交通機関をご利用いただきますようお願いいたします。",
+      },
+      {
+        q: "自転車で行く場合、駐輪場はありますか？",
+        a: "はい、校内の指定された場所に駐輪スペースを設けております。当日は案内係の生徒の指示に従って駐輪してください。",
+      },
+      {
+        q: "上履きやスリッパ、下足を入れる袋は持参したほうがいいですか？",
+        a: "校舎内（教室棟・体育館）に入る際は上履きが必要です。ご自身のスリッパ等の上履きと、脱いだ下足を入れる袋を必ずご持参ください。",
+      }
+    ]
   },
   {
-    q: "上履き・スリッパは必要ですか？",
-    a: "校舎内は土足厳禁となっております。各自で上履きと靴袋をご持参ください。",
+    category: "企画・スケジュールについて",
+    items: [
+      {
+        q: "パンフレットはどこでもらえますか？",
+        a: "当日、入場時などに案内係の生徒からお渡しいたします。",
+      },
+      {
+        q: "体育館でのステージ企画を見るのに、整理券などは必要ですか？",
+        a: "必要ありません。どなたでもご自由に入場いただけます。ぜひお気軽にご覧ください。",
+      }
+    ]
   },
   {
-    q: "飲食の持ち込みは可能ですか？",
-    a: "可能ですが、ゴミは各自でお持ち帰りいただくようご協力をお願いします。模擬店での販売もございます。",
-  },
-  {
-    q: "写真や動画の撮影は可能ですか？",
-    a: "ステージ発表や展示の撮影は可能ですが、他のお客様の迷惑にならないようご配慮ください。また、SNSへの無断投稿はお控えください。",
-  },
+    category: "飲食・お金・ルールについて",
+    items: [
+      {
+        q: "模擬店での支払いは、PayPayなどのスマホ決済や電子マネーは使えますか？",
+        a: "申し訳ありませんが、模擬店での決済は原則【現金のみ】となります。スムーズな会計のため、100円玉などの小銭を多めにご用意いただけますと幸いです。",
+      },
+      {
+        q: "校内で写真や動画を撮影してもいいですか？SNSに載せてもいいですか？",
+        a: "撮影自体は可能ですが、他のご来場者様や本校生徒の顔がはっきりと映っている写真・動画を、無断でSNS（Instagram、TikTok、X等）へアップロードする行為は固く禁じております。プライバシー保護へのご協力をお願いいたします。",
+      },
+      {
+        q: "買った食べ物はどこで食べられますか？食べ歩きは可能ですか？",
+        a: "基本的に校内のどこでもお召し上がりいただけますが、ゴミのポイ捨て等はおやめください。",
+      },
+      {
+        q: "ゴミ箱は設置されていますか？",
+        a: "ゴミの出る商品を販売している各模擬店にてゴミ袋を設置しておりますので、出たゴミはそちらに捨てていただきますようお願いいたします。",
+      }
+    ]
+  }
 ];
 
-function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
+function AccordionItem({ faq, index }: { faq: { q: string, a: string }; index: number }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
     <ScrollReveal delay={index * 0.1} direction={index % 2 === 0 ? "left" : "right"}>
       <MotionCard
-        className={`border-4 border-black bg-white transition-colors duration-300 ${isOpen ? "shadow-[8px_8px_0px_rgba(234,88,12,1)]" : "shadow-[6px_6px_0px_rgba(0,0,0,1)]"}`}
+        className={`border-2 border-black bg-white transition-colors duration-300 ${isOpen ? "shadow-[4px_4px_0px_rgba(234,88,12,1)]" : "shadow-[4px_4px_0px_rgba(0,0,0,1)]"}`}
         hoverColor={isOpen ? "rgba(234,88,12,1)" : "rgba(37,99,235,1)"}
       >
         <button
@@ -38,15 +77,15 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
           className="flex w-full items-center justify-between p-6 text-left focus:outline-none focus:ring-4 focus:ring-blue-600/50"
           aria-expanded={isOpen}
         >
-          <div className="flex items-center gap-4">
-            <div className={`p-2 border-4 border-black transition-colors flex-shrink-0 -skew-x-6 ${isOpen ? "bg-orange-500 text-white" : "bg-blue-200 text-blue-900"}`}>
-              <HelpCircle className="w-6 h-6 sm:w-8 sm:h-8" />
-            </div>
-            <span className={`text-lg sm:text-xl font-black transition-colors ${isOpen ? "text-orange-600" : "text-black"}`}>
+          <div className="flex items-start gap-4">
+            <span className="font-black text-red-600 text-3xl -skew-x-12 leading-none mt-1 shrink-0">
+              Q.
+            </span>
+            <span className={`text-lg sm:text-xl font-black transition-colors ${isOpen ? "text-orange-600" : "text-black"} mt-1`}>
               {faq.q}
             </span>
           </div>
-          <div className={`flex-shrink-0 p-1 border-2 border-black transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isOpen ? "rotate-180 bg-black text-white" : "rotate-0 bg-white text-black"}`}>
+          <div className={`flex-shrink-0 p-1 border-2 border-black transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isOpen ? "rotate-180 bg-black text-white" : "rotate-0 bg-white text-black"} ml-4`}>
             <ChevronDown className="w-6 h-6" />
           </div>
         </button>
@@ -56,11 +95,15 @@ function AccordionItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
           className={`grid transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] origin-top ${isOpen ? "grid-rows-[1fr] opacity-100 scale-y-100" : "grid-rows-[0fr] opacity-0 scale-y-95 pointer-events-none"}`}
         >
           <div className="overflow-hidden">
-            <div className="p-6 pt-0 bg-orange-50 border-t-4 border-black mt-2">
-              <p className="flex gap-4 font-bold text-slate-800 leading-loose py-4">
-                <span className="font-black text-orange-600 text-2xl -skew-x-12">A.</span>
-                <span>{faq.a}</span>
-              </p>
+            <div className="p-6 pt-0 bg-white border-t-2 border-dashed border-black mt-2">
+              <div className="flex items-start gap-4 py-4">
+                <span className="font-black text-blue-600 text-3xl -skew-x-12 leading-none mt-1 shrink-0">
+                  A.
+                </span>
+                <p className="font-bold text-slate-800 leading-relaxed text-lg mt-1">
+                  {faq.a}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -97,9 +140,20 @@ export default function FAQPage() {
           </div>
         </ScrollReveal>
 
-        <div className="space-y-6">
-          {faqs.map((faq, index) => (
-            <AccordionItem key={index} faq={faq} index={index} />
+        <div className="space-y-16">
+          {faqData.map((categoryData, catIndex) => (
+            <div key={catIndex}>
+              <ScrollReveal direction="left">
+                <h2 className="text-2xl md:text-3xl font-black mb-8 border-b-4 border-black pb-2 inline-block -skew-x-6">
+                  {categoryData.category}
+                </h2>
+              </ScrollReveal>
+              <div className="space-y-6">
+                {categoryData.items.map((faq, index) => (
+                  <AccordionItem key={index} faq={faq} index={index} />
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
