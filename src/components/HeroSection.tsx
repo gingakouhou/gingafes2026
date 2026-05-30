@@ -18,8 +18,8 @@ export default function HeroSection() {
             key={i}
             animate={{ x: i % 2 === 0 ? [0, -100] : [-100, 0] }}
             transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-            className="text-[150px] leading-none font-black text-transparent whitespace-nowrap opacity-20 -rotate-6 font-[var(--font-oswald)]"
-            style={{ WebkitTextStroke: "2px #cbd5e1" }}
+            className="text-[180px] leading-none font-black text-transparent whitespace-nowrap opacity-40 -rotate-6 font-[var(--font-oswald)]"
+            style={{ WebkitTextStroke: "3px #94a3b8" }}
           >
             GINGAFES 2026 GINGAFES 2026 GINGAFES 2026 GINGAFES 2026
           </motion.p>
@@ -36,14 +36,12 @@ export default function HeroSection() {
           damping: 15,
           delay: 0.2,
         }}
-        className="relative z-20 w-[90vw] md:w-[700px] aspect-video flex justify-center items-center mb-8 mx-auto"
+        className="relative z-20 w-[95vw] md:w-[600px] mx-auto -mt-4 flex justify-center items-center mb-8"
       >
-        <Image
+        <img
           src="/logo.png"
           alt="GINGAFES '26 -永炎の思い出を駆け抜けろ-"
-          fill
-          className="object-contain w-full h-full drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)] scale-125 md:scale-110"
-          priority
+          className="w-full h-auto object-contain scale-110 drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)]"
         />
       </motion.div>
 
