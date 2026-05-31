@@ -9,9 +9,9 @@ export const revalidate = 60;
 
 // カテゴリ設定
 const categories = [
-  { key: "クラス企画", emoji: "🌟", label: "クラス企画", borderColor: "border-black" },
-  { key: "部活動・有志", emoji: "🎸", label: "部活動・有志企画", borderColor: "border-black" },
-  { key: "ステージ", emoji: "🎤", label: "メインステージ (体育館)", borderColor: "border-black" },
+  { key: "模擬店", emoji: "🍔", label: "模擬店", borderColor: "border-black" },
+  { key: "室内イベント", emoji: "🏫", label: "室内イベント", borderColor: "border-black" },
+  { key: "その他", emoji: "✨", label: "その他", borderColor: "border-black" },
 ];
 
 function renderEventCard(event: Event) {
@@ -41,7 +41,7 @@ function renderEventCard(event: Event) {
         <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
           <MapPin className="h-4 w-4 text-orange-600 font-black" />
           <span className="text-sm font-black tracking-wider text-orange-900">
-            {event.location || event.category || "場所未定"}
+            {event.location || (Array.isArray(event.category) ? event.category.join(", ") : event.category) || "場所未定"}
           </span>
         </div>
         
@@ -83,11 +83,17 @@ export default async function EventsPage() {
         </ScrollReveal>
 
         {allEvents.length > 0 ? (
-          <div className="space-y-24">
+          <div className="space-y-16">
             {(() => {
               const categorizedSections = categories
                 .map((cat) => {
-                  const filtered = allEvents.filter((e) => e.category === cat.key);
+                  const filtered = allEvents.filter((e) => {
+                    if (!e.category) return false;
+                    if (Array.isArray(e.category)) {
+                      return e.category.includes(cat.key);
+                    }
+                    return e.category === cat.key;
+                  });
                   if (filtered.length === 0) return null;
                   return (
                     <section key={cat.key}>

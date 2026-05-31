@@ -41,7 +41,7 @@ export async function getNewsList(limit: number = 3): Promise<MicroCMSListRespon
 
 export type Event = {
   title: string;
-  category?: string;
+  category?: string | string[];
   location?: string;
   description?: string;
   image?: { url: string; width: number; height: number; };
