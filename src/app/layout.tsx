@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { Geist, Geist_Mono, Oswald } from "next/font/google";
 import "./globals.css";
 
@@ -64,6 +65,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
         </ClientLayout>
+        {process.env.NEXT_PUBLIC_GA_ID && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />}
       </body>
     </html>
   );
