@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Oswald } from "next/font/google";
 import "./globals.css";
 
@@ -22,9 +22,31 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ClientLayout from "@/components/ClientLayout";
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+};
+
 export const metadata: Metadata = {
-  title: "ぎんが祭 2026",
-  description: "ぎんが祭 2026 特設サイト",
+  title: {
+    default: "松本蟻ヶ崎高校 ぎんが祭 2026 | 星瞬 -永炎の思い出を駆け抜けろ-",
+    template: "%s | ぎんが祭 2026",
+  },
+  description: "長野県松本蟻ヶ崎高校の2026年度文化祭「ぎんが祭」の公式特設サイトです。スローガンは「星瞬 -永炎の思い出を駆け抜けろ-」。日程、タイムテーブル、企画一覧、アクセス情報などを掲載しています。",
+  keywords: ["松本蟻ヶ崎高校", "ぎんが祭", "文化祭", "長野県", "高校", "2026"],
+  openGraph: {
+    title: "松本蟻ヶ崎高校 ぎんが祭 2026 | 星瞬 -永炎の思い出を駆け抜けろ-",
+    description: "長野県松本蟻ヶ崎高校の2026年度文化祭「ぎんが祭」の公式特設サイトです。スローガンは「星瞬 -永炎の思い出を駆け抜けろ-」。日程、タイムテーブル、企画一覧、アクセス情報などを掲載しています。",
+    url: "https://gingafes.vercel.app",
+    siteName: "ぎんが祭 2026 特設サイト",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "松本蟻ヶ崎高校 ぎんが祭 2026 | 星瞬 -永炎の思い出を駆け抜けろ-",
+    description: "長野県松本蟻ヶ崎高校の2026年度文化祭「ぎんが祭」の公式特設サイトです。スローガンは「星瞬 -永炎の思い出を駆け抜けろ-」。日程、タイムテーブル、企画一覧、アクセス情報などを掲載しています。",
+  },
 };
 
 export default function RootLayout({
