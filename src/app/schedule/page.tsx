@@ -44,13 +44,13 @@ export default function SchedulePage() {
       <main className="relative z-10 w-full max-w-4xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
         
         <ScrollReveal>
-          <div className="mb-16 text-center">
-            <div className="inline-block bg-orange-600 text-white px-8 py-3 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6">
-              <h1 className="text-4xl font-black tracking-widest md:text-5xl uppercase">
+          <div className="mb-10 text-center">
+            <div className="inline-block bg-orange-600 text-white px-6 py-2 border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] -skew-x-6">
+              <h1 className="text-3xl font-black tracking-widest md:text-4xl uppercase">
                 Schedule
               </h1>
             </div>
-            <p className="mt-6 text-lg font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] -rotate-2">
+            <p className="mt-4 text-base font-bold tracking-widest text-slate-800 uppercase bg-white border-2 border-black inline-block px-4 py-1 shadow-[4px_4px_0px_rgba(0,0,0,1)] -rotate-2">
               タイムテーブル
             </p>
           </div>
@@ -69,7 +69,7 @@ export default function SchedulePage() {
                 key={index} 
                 delay={index * 0.08}
                 direction={isEven ? "right" : "left"}
-                className={`mb-16 flex justify-between items-center w-full
+                className={`mb-10 flex justify-between items-center w-full
                   ${isEven ? 'md:flex-row-reverse' : 'md:flex-row'}
                   flex-row-reverse relative z-10
                 `}

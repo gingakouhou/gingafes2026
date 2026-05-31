@@ -34,11 +34,11 @@ export default async function Home() {
         <HeroSection />
 
         {/* --- NEWS SECTION --- */}
-        <section id="news" className="py-20">
+        <section id="news" className="py-16">
           <ScrollReveal direction="left">
-            <div className="flex items-center gap-4 mb-12">
-              <Zap className="h-10 w-10 text-orange-600 fill-orange-600" />
-              <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
+            <div className="flex items-center gap-4 mb-8">
+              <Zap className="h-8 w-8 text-orange-600 fill-orange-600" />
+              <h2 className="text-3xl md:text-4xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
                 News
               </h2>
               <div className="h-2 flex-grow bg-black ml-4" />
@@ -50,7 +50,7 @@ export default async function Home() {
               newsList.map((news, i) => (
                 <ScrollReveal key={news.id} delay={i * 0.1} direction={i % 2 === 0 ? "left" : "right"}>
                   <MotionCard
-                    className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-8 rounded-none border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] text-blue-900 cursor-pointer"
+                    className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-8 rounded-none border-4 border-black bg-white p-4 shadow-[6px_6px_0px_rgba(0,0,0,1)] text-blue-900 cursor-pointer"
                     hoverColor="rgba(37,99,235,1)"
                   >
                     <div className="flex items-center gap-2 sm:w-48 shrink-0 border-b-2 sm:border-b-0 sm:border-r-4 border-black pb-2 sm:pb-0 sm:pr-6 whitespace-nowrap mt-1">
@@ -60,7 +60,7 @@ export default async function Home() {
                       </span>
                     </div>
                     <div className="flex flex-col gap-2 w-full">
-                      <h3 className="text-xl font-bold group-hover:text-orange-600 transition-colors break-words">
+                      <h3 className="text-lg sm:text-xl font-bold group-hover:text-orange-600 transition-colors break-words">
                         {news.title}
                       </h3>
                       {(news.content || news.body || news.description) && (
@@ -82,11 +82,11 @@ export default async function Home() {
         </section>
 
         {/* --- EVENTS PREVIEW SECTION --- */}
-        <section className="py-20 mt-12">
+        <section className="py-16 mt-8">
           <ScrollReveal direction="right">
-            <div className="flex items-center gap-4 mb-12 flex-row-reverse">
-              <Zap className="h-10 w-10 text-blue-600 fill-blue-600" />
-              <h2 className="text-4xl md:text-5xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
+            <div className="flex items-center gap-4 mb-8 flex-row-reverse">
+              <Zap className="h-8 w-8 text-blue-600 fill-blue-600" />
+              <h2 className="text-3xl md:text-4xl font-black text-black tracking-tighter uppercase italic -skew-x-12">
                 Events
               </h2>
               <div className="h-2 flex-grow bg-black mr-4" />
@@ -98,11 +98,11 @@ export default async function Home() {
               eventList.map((event, i) => (
                 <ScrollReveal key={event.id} delay={i * 0.12}>
                   <MotionCard
-                    className="group flex flex-col border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
+                    className="group flex flex-col border-4 border-black bg-white p-4 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
                     hoverColor="rgba(234,88,12,1)"
                   >
                     {/* 画像またはプレースホルダー部分 */}
-                    <div className="mb-6 relative flex h-48 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-orange-600 transition-colors duration-300">
+                    <div className="mb-4 relative flex h-32 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-orange-600 transition-colors duration-300">
                       {event.image ? (
                         <Image
                           src={event.image.url}
@@ -118,15 +118,15 @@ export default async function Home() {
                       )}
                     </div>
 
-                    <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
+                    <div className="flex items-center gap-2 mb-2 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
                       <MapPin className="h-4 w-4 text-orange-600 font-black" />
-                      <span className="text-sm font-black tracking-wider text-orange-900">
+                      <span className="text-xs sm:text-sm font-black tracking-wider text-orange-900">
                         {event.location || event.category || "場所未定"}
                       </span>
                     </div>
 
-                    <h3 className="mb-3 text-2xl font-black text-black leading-tight group-hover:text-blue-700 transition-colors">{event.title}</h3>
-                    <p className="text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-3">
+                    <h3 className="mb-2 text-lg sm:text-xl font-black text-black leading-tight group-hover:text-blue-700 transition-colors">{event.title}</h3>
+                    <p className="text-xs sm:text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-2">
                       {event.description || "熱い企画が待っている！"}
                     </p>
                   </MotionCard>
@@ -142,7 +142,7 @@ export default async function Home() {
           <ScrollReveal delay={0.3}>
             <div className="mt-16 text-center">
               <MotionCard
-                className="inline-flex items-center gap-2 border-4 border-black bg-blue-600 px-8 py-4 text-lg font-black tracking-widest text-white uppercase shadow-[6px_6px_0px_rgba(0,0,0,1)] -skew-x-6 cursor-pointer"
+                className="inline-flex items-center gap-2 border-4 border-black bg-blue-600 px-6 py-3 text-base font-black tracking-widest text-white uppercase shadow-[6px_6px_0px_rgba(0,0,0,1)] -skew-x-6 cursor-pointer"
                 hoverColor="rgba(234,88,12,1)"
               >
                 <Link href="/events" className="flex items-center gap-2">

@@ -22,16 +22,16 @@ export default function EventFilter({ allEvents }: { allEvents: Event[] }) {
   });
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-8">
       {/* タブUI */}
-      <div className="flex flex-wrap items-center justify-center gap-4">
+      <div className="flex flex-wrap items-center justify-center gap-2">
         {tabs.map((tab) => {
           const isActive = activeTab === tab;
           return (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-3 font-black text-lg border-2 border-black transition-all ${
+              className={`px-4 py-2 font-bold text-sm sm:text-base border-2 border-black transition-all ${
                 isActive
                   ? "bg-blue-600 text-white translate-y-[4px] translate-x-[4px] shadow-none"
                   : "bg-white text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-orange-100 hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:translate-y-[4px] active:translate-x-[4px] active:shadow-none"
@@ -44,7 +44,7 @@ export default function EventFilter({ allEvents }: { allEvents: Event[] }) {
       </div>
 
       {/* 企画グリッド */}
-      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <AnimatePresence mode="popLayout">
           {filteredEvents.map((event) => (
             <motion.div
@@ -56,11 +56,11 @@ export default function EventFilter({ allEvents }: { allEvents: Event[] }) {
               transition={{ duration: 0.3 }}
             >
               <MotionCard
-                className="group flex flex-col h-full border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
+                className="group flex flex-col h-full border-4 border-black bg-white p-4 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
                 hoverColor="rgba(37,99,235,1)"
               >
                 {/* 画像またはプレースホルダー部分 */}
-                <div className="mb-6 relative flex h-48 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-blue-600 transition-colors duration-300">
+                <div className="mb-4 relative flex h-32 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-blue-600 transition-colors duration-300">
                   {event.image ? (
                     <Image
                       src={event.image.url}
@@ -76,15 +76,15 @@ export default function EventFilter({ allEvents }: { allEvents: Event[] }) {
                   )}
                 </div>
                 
-                <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
+                <div className="flex items-center gap-2 mb-2 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
                   <MapPin className="h-4 w-4 text-orange-600 font-black" />
-                  <span className="text-sm font-black tracking-wider text-orange-900">
+                  <span className="text-xs sm:text-sm font-black tracking-wider text-orange-900">
                     {event.location || (Array.isArray(event.category) ? event.category.join(", ") : event.category) || "場所未定"}
                   </span>
                 </div>
                 
-                <h3 className="mb-3 text-2xl font-black text-black leading-tight group-hover:text-blue-700 transition-colors">{event.title}</h3>
-                <p className="text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-3">
+                <h3 className="mb-2 text-lg sm:text-xl font-black text-black leading-tight group-hover:text-blue-700 transition-colors">{event.title}</h3>
+                <p className="text-xs sm:text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-2">
                   {event.description || "熱い企画が待っている！"}
                 </p>
               </MotionCard>
