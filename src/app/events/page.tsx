@@ -1,58 +1,11 @@
-import { Image as ImageIcon, MapPin } from "lucide-react";
-import { getEventsList, type Event } from "@/lib/microcms";
-import Image from "next/image";
+import { getEventsList } from "@/lib/microcms";
 import ScrollReveal from "@/components/ScrollReveal";
-import MotionCard from "@/components/MotionCard";
+import EventFilter from "@/components/EventFilter";
 
 // ISR: 60秒ごとにキャッシュを再検証
 export const revalidate = 60;
 
-// カテゴリ設定
-const categories = [
-  { key: "模擬店", emoji: "🍔", label: "模擬店", borderColor: "border-black" },
-  { key: "室内イベント", emoji: "🏫", label: "室内イベント", borderColor: "border-black" },
-  { key: "その他", emoji: "✨", label: "その他", borderColor: "border-black" },
-];
 
-function renderEventCard(event: Event) {
-  return (
-    <ScrollReveal key={event.id}>
-      <MotionCard
-        className="group flex flex-col h-full border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] cursor-pointer"
-        hoverColor="rgba(37,99,235,1)"
-      >
-        {/* 画像またはプレースホルダー部分 */}
-        <div className="mb-6 relative flex h-48 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-blue-600 transition-colors duration-300">
-          {event.image ? (
-            <Image
-              src={event.image.url}
-              width={event.image.width}
-              height={event.image.height}
-              alt={event.title}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="absolute inset-0 bg-[repeating-linear-gradient(45deg,transparent,transparent_10px,#e2e8f0_10px,#e2e8f0_20px)] w-full h-full flex items-center justify-center transition-colors duration-300 group-hover:bg-blue-50">
-              <ImageIcon className="h-12 w-12 opacity-50" />
-            </div>
-          )}
-        </div>
-        
-        <div className="flex items-center gap-2 mb-3 bg-orange-100 border-2 border-black px-3 py-1 -skew-x-6 w-fit">
-          <MapPin className="h-4 w-4 text-orange-600 font-black" />
-          <span className="text-sm font-black tracking-wider text-orange-900">
-            {event.location || (Array.isArray(event.category) ? event.category.join(", ") : event.category) || "場所未定"}
-          </span>
-        </div>
-        
-        <h3 className="mb-3 text-2xl font-black text-black leading-tight group-hover:text-blue-700 transition-colors">{event.title}</h3>
-        <p className="text-sm font-bold leading-relaxed text-slate-700 border-t-2 border-dashed border-black pt-3">
-          {event.description || "熱い企画が待っている！"}
-        </p>
-      </MotionCard>
-    </ScrollReveal>
-  );
-}
 
 export default async function EventsPage() {
   const eventsData = await getEventsList();
@@ -82,59 +35,7 @@ export default async function EventsPage() {
           </div>
         </ScrollReveal>
 
-        {allEvents.length > 0 ? (
-          <div className="space-y-16">
-            {(() => {
-              const categorizedSections = categories
-                .map((cat) => {
-                  const filtered = allEvents.filter((e) => {
-                    if (!e.category) return false;
-                    if (Array.isArray(e.category)) {
-                      return e.category.includes(cat.key);
-                    }
-                    return e.category === cat.key;
-                  });
-                  if (filtered.length === 0) return null;
-                  return (
-                    <section key={cat.key}>
-                      <ScrollReveal delay={0.1} direction="left">
-                        <div className={`flex items-center gap-4 mb-10 border-b-4 ${cat.borderColor} pb-4`}>
-                          <span className="text-4xl bg-white border-4 border-black p-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] -skew-x-6">{cat.emoji}</span>
-                          <h2 className="text-3xl font-black tracking-tighter text-black uppercase italic -skew-x-12">{cat.label}</h2>
-                        </div>
-                      </ScrollReveal>
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                        {filtered.map((event) => renderEventCard(event))}
-                      </div>
-                    </section>
-                  );
-                })
-                .filter(Boolean);
-
-              if (categorizedSections.length === 0) {
-                return (
-                  <section>
-                    <ScrollReveal delay={0.1} direction="left">
-                      <div className="flex items-center gap-4 mb-10 border-b-4 border-black pb-4">
-                        <span className="text-4xl bg-white border-4 border-black p-2 shadow-[4px_4px_0px_rgba(0,0,0,1)] -skew-x-6">🎪</span>
-                        <h2 className="text-3xl font-black tracking-tighter text-black uppercase italic -skew-x-12">すべての企画</h2>
-                      </div>
-                    </ScrollReveal>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                      {allEvents.map((event) => renderEventCard(event))}
-                    </div>
-                  </section>
-                );
-              }
-
-              return categorizedSections;
-            })()}
-          </div>
-        ) : (
-          <div className="bg-white border-4 border-black p-8 text-center shadow-[8px_8px_0px_rgba(0,0,0,1)] font-bold text-lg max-w-2xl mx-auto">
-            現在、企画情報を準備中です。
-          </div>
-        )}
+        <EventFilter allEvents={allEvents} />
 
       </main>
     </div>
