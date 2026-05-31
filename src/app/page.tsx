@@ -50,18 +50,26 @@ export default async function Home() {
               newsList.map((news, i) => (
                 <ScrollReveal key={news.id} delay={i * 0.1} direction={i % 2 === 0 ? "left" : "right"}>
                   <MotionCard
-                    className="group flex flex-col sm:flex-row items-baseline gap-4 sm:gap-8 rounded-none border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] text-blue-900 cursor-pointer"
+                    className="group flex flex-col sm:flex-row items-start gap-4 sm:gap-8 rounded-none border-4 border-black bg-white p-6 shadow-[6px_6px_0px_rgba(0,0,0,1)] text-blue-900 cursor-pointer"
                     hoverColor="rgba(37,99,235,1)"
                   >
-                    <div className="flex items-center gap-2 sm:w-48 shrink-0 border-b-2 sm:border-b-0 sm:border-r-4 border-black pb-2 sm:pb-0 sm:pr-6 whitespace-nowrap">
+                    <div className="flex items-center gap-2 sm:w-48 shrink-0 border-b-2 sm:border-b-0 sm:border-r-4 border-black pb-2 sm:pb-0 sm:pr-6 whitespace-nowrap mt-1">
                       <Calendar className="h-5 w-5 text-orange-600" />
                       <span className="font-bold text-lg tracking-wider">
                         {new Date(news.publishedAtDate || news.publishedAt!).toLocaleDateString('ja-JP')}
                       </span>
                     </div>
-                    <h3 className="text-xl font-bold group-hover:text-orange-600 transition-colors break-words">
-                      {news.title}
-                    </h3>
+                    <div className="flex flex-col gap-2 w-full">
+                      <h3 className="text-xl font-bold group-hover:text-orange-600 transition-colors break-words">
+                        {news.title}
+                      </h3>
+                      {(news.content || news.body || news.description) && (
+                        <div 
+                          className="text-sm font-bold text-slate-600 line-clamp-2 leading-relaxed"
+                          dangerouslySetInnerHTML={{ __html: (news.content || news.body || news.description) as string }} 
+                        />
+                      )}
+                    </div>
                   </MotionCard>
                 </ScrollReveal>
               ))

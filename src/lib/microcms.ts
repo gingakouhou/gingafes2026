@@ -11,6 +11,8 @@ export const client = createClient({
 export type News = {
   title: string;
   content?: string;
+  body?: string;
+  description?: string;
   publishedAtDate?: string;
 } & MicroCMSListContent;
 
