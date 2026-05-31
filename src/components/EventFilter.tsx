@@ -24,14 +24,14 @@ export default function EventFilter({ allEvents }: { allEvents: Event[] }) {
   return (
     <div className="space-y-8">
       {/* タブUI */}
-      <div className="flex flex-wrap items-center justify-center gap-2">
+      <div className="grid grid-cols-2 md:flex md:justify-center gap-3">
         {tabs.map((tab) => {
           const isActive = activeTab === tab;
           return (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2 font-bold text-sm sm:text-base border-2 border-black transition-all ${
+              className={`w-full md:w-auto px-4 py-2 font-bold text-sm sm:text-base border-2 border-black transition-all ${
                 isActive
                   ? "bg-blue-600 text-white translate-y-[4px] translate-x-[4px] shadow-none"
                   : "bg-white text-black shadow-[4px_4px_0px_rgba(0,0,0,1)] hover:bg-orange-100 hover:-translate-y-1 hover:shadow-[6px_6px_0px_rgba(0,0,0,1)] active:translate-y-[4px] active:translate-x-[4px] active:shadow-none"

@@ -20,7 +20,7 @@ export default async function EventsPage() {
       <div className="fixed top-20 right-0 w-1/3 h-full bg-blue-600/5 -skew-x-12 translate-x-32 pointer-events-none z-0" />
       <div className="fixed bottom-0 left-0 w-1/2 h-1/2 bg-orange-600/5 skew-x-12 -translate-x-16 pointer-events-none z-0" />
 
-      <main className="relative z-10 w-full max-w-6xl px-4 py-16 mx-auto sm:px-6 lg:px-8 mt-8">
+      <main className="relative z-10 w-full max-w-6xl px-4 pt-24 pb-16 md:pt-32 mx-auto sm:px-6 lg:px-8">
         
         <ScrollReveal>
           <div className="mb-10 text-center">
