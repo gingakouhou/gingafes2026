@@ -97,7 +97,7 @@ export default function AccessPage() {
                 駐車場に関するご注意
               </h4>
               <p className="text-white font-bold text-lg drop-shadow-md">
-                当日は高校周辺の駐車場が混雑することが予想されます。お越しの際は、なるべく<u className="decoration-black decoration-4 underline-offset-4">公共交通機関をご利用ください</u>。
+                当日は高校周辺の駐車場が混雑することが予想されます。また、学校内に一般来場者向けの駐車場はございませんので、お越しの際は、なるべく<u className="decoration-black decoration-4 underline-offset-4">公共交通機関をご利用ください</u>。
               </p>
             </div>
           </section>
