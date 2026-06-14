@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ChevronDown, Play } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import ThemeSongModal from "./ThemeSongModal";
@@ -38,9 +38,12 @@ export default function HeroSection() {
         }}
         className="relative z-20 w-[85vw] max-w-[500px] mx-auto flex justify-center items-center mb-8"
       >
-        <img
+        <Image
           src="/logo.png"
           alt="GINGAFES 78th -永炎の思い出を駆け抜けろ-"
+          width={500}
+          height={300}
+          priority
           className="w-full h-auto object-contain drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)]"
         />
       </motion.div>

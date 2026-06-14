@@ -30,6 +30,7 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://gingafes.vercel.app"),
   title: {
     default: "松本蟻ヶ崎高校 第78回ぎんが祭 | 星瞬 -永炎の思い出を駆け抜けろ-",
     template: "%s | 第78回ぎんが祭",

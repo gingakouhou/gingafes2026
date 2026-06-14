@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, MessageCircleQuestion, HelpCircle } from "lucide-react";
+import { ChevronDown, MessageCircleQuestion } from "lucide-react";
 import ScrollReveal from "@/components/ScrollReveal";
 import MotionCard from "@/components/MotionCard";
 
