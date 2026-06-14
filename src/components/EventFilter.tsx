@@ -60,7 +60,7 @@ export default function EventFilter({ allEvents }: { allEvents: Event[] }) {
                 hoverColor="rgba(37,99,235,1)"
               >
                 {/* 画像またはプレースホルダー部分 */}
-                <div className="mb-4 relative flex h-32 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-blue-600 transition-colors duration-300">
+                <div className="mb-4 relative flex aspect-video w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-blue-600 transition-colors duration-300">
                   {event.image ? (
                     <Image
                       src={event.image.url}

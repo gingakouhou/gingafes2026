@@ -65,7 +65,7 @@ export default async function Home() {
                       </h3>
                       {(news.content || news.body || news.description) && (
                         <div 
-                          className="text-sm font-bold text-slate-600 line-clamp-2 leading-relaxed"
+                          className="text-sm font-bold text-slate-600 leading-relaxed break-words h-auto"
                           dangerouslySetInnerHTML={{ __html: (news.content || news.body || news.description) as string }} 
                         />
                       )}
@@ -102,7 +102,7 @@ export default async function Home() {
                     hoverColor="rgba(234,88,12,1)"
                   >
                     {/* 画像またはプレースホルダー部分 */}
-                    <div className="mb-4 relative flex h-32 w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-orange-600 transition-colors duration-300">
+                    <div className="mb-4 relative flex aspect-video w-full items-center justify-center border-4 border-black bg-slate-100 text-slate-400 overflow-hidden group-hover:border-orange-600 transition-colors duration-300">
                       {event.image ? (
                         <Image
                           src={event.image.url}
