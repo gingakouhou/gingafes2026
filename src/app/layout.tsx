@@ -48,6 +48,9 @@ export const metadata: Metadata = {
     title: "松本蟻ヶ崎高校 ぎんが祭 2026 | 星瞬 -永炎の思い出を駆け抜けろ-",
     description: "長野県松本蟻ヶ崎高校の2026年度文化祭「ぎんが祭」の公式特設サイトです。スローガンは「星瞬 -永炎の思い出を駆け抜けろ-」。日程、タイムテーブル、企画一覧、アクセス情報などを掲載しています。",
   },
+  verification: {
+    google: "ey1ZNwTmTnt2Lct6QATXeaBt11aDR4bz0k1L3cd7WvE",
+  },
 };
 
 export default function RootLayout({
