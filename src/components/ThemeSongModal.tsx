@@ -40,7 +40,7 @@ export default function ThemeSongModal({ isOpen, onClose }: ThemeSongModalProps)
             {/* YouTube Embed */}
             <iframe
               src="https://www.youtube.com/embed/GfvorRUyy_w?autoplay=1"
-              title="GINGA FESTIVAL '26 THEME SONG"
+              title="GINGA FESTIVAL 78th THEME SONG"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
               className="w-full h-full"

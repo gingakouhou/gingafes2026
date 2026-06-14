@@ -46,7 +46,7 @@ export default function Splash() {
             transition={{ duration: 0.3, ease: "circIn" }}
           />
 
-          {/* テキスト（GINGAFES '26） */}
+          {/* テキスト（GINGAFES 78th） */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center z-10"
             initial={{ opacity: 1 }}
@@ -54,7 +54,7 @@ export default function Splash() {
             transition={{ duration: 0.2, ease: "circIn" }}
           >
             <h1 className="text-5xl sm:text-7xl md:text-9xl font-black text-white tracking-widest text-center whitespace-nowrap">
-              GINGAFES '26
+              GINGAFES 78th
             </h1>
           </motion.div>
         </motion.div>

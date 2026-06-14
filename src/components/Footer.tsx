@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="mb-6 flex items-center justify-center gap-3">
           <Zap className="h-6 w-6 text-orange-600 fill-orange-600" />
           <span className="text-xl font-black tracking-widest text-slate-900 border-b-4 border-blue-600 pb-1 -skew-x-12">
-            GINGA FES <span className="text-blue-600">2026</span>
+            <span className="text-blue-600">78th</span> GINGA FES
           </span>
           <Zap className="h-6 w-6 text-orange-600 fill-orange-600" />
         </div>

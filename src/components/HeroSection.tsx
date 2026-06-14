@@ -21,7 +21,7 @@ export default function HeroSection() {
             className="text-[180px] leading-none font-black text-transparent whitespace-nowrap opacity-15 -rotate-6 font-[var(--font-oswald)]"
             style={{ WebkitTextStroke: "1px #e2e8f0" }}
           >
-            GINGAFES 2026 GINGAFES 2026 GINGAFES 2026 GINGAFES 2026
+            GINGAFES 78th GINGAFES 78th GINGAFES 78th GINGAFES 78th
           </motion.p>
         ))}
       </div>
@@ -40,7 +40,7 @@ export default function HeroSection() {
       >
         <img
           src="/logo.png"
-          alt="GINGAFES '26 -永炎の思い出を駆け抜けろ-"
+          alt="GINGAFES 78th -永炎の思い出を駆け抜けろ-"
           className="w-full h-auto object-contain drop-shadow-[4px_4px_8px_rgba(0,0,0,0.3)]"
         />
       </motion.div>
@@ -55,7 +55,7 @@ export default function HeroSection() {
           className="bg-blue-600 px-8 py-3 border-4 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] text-white -skew-x-6 rotate-1 transform-gpu"
         >
           <p className="text-base md:text-2xl font-black tracking-widest uppercase font-[var(--font-oswald)] skew-x-6">
-            MATSUMOTO ARIGASAKI HIGH SCHOOL FESTIVAL
+            78th MATSUMOTO ARIGASAKI HIGH SCHOOL FESTIVAL
           </p>
         </motion.div>
 
